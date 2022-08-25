@@ -1,11 +1,14 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
+
+	$: needHackyFix = $page.url.pathname === '/';
 </script>
 
 <Header />
 
-<main>
+<main style={needHackyFix ? "display: block;" : undefined}>
 	<slot />
 </main>
 
