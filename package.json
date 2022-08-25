@@ -13,7 +13,7 @@
 	"devDependencies": {
 		"@playwright/test": "^1.25.0",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "npm:@tal500/kit@1.0.0-next.431-legacy-builds-1",
+		"@sveltejs/kit": "npm:@tal500/kit@1.0.0-next.431-legacy-builds-2",
 		"@types/cookie": "^0.5.1",
 		"@vitejs/plugin-legacy": "^2.0.1",
 		"custom-event-polyfill": "^1.0.7",
