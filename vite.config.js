@@ -6,6 +6,8 @@ const config = {
 	plugins: [
 		sveltekit(),
 		legacy({
+			// For complete list of available options, see:
+			// https://www.npmjs.com/package/@vitejs/plugin-legacy#Options
 			targets: ['ie >= 11'],
 			additionalLegacyPolyfills: [
 				'custom-event-polyfill',
@@ -16,7 +18,7 @@ const config = {
 				'regenerator-runtime/runtime',
 				'unorm'
 			],
-			modernPolyfills: ['es.promise.finally']
+			//modernPolyfills: ['es.promise.finally'] // You may add modern polyfills too!
 		}),
 	]
 };
