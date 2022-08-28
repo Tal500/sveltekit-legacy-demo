@@ -4,7 +4,7 @@ specifiers:
   '@fontsource/fira-mono': ^4.5.0
   '@playwright/test': ^1.25.0
   '@sveltejs/adapter-auto': next
-  '@sveltejs/kit': npm:@tal500/kit@1.0.0-next.431-legacy-builds-2
+  '@sveltejs/kit': npm:@tal500/kit@1.0.0-next.445-legacy-builds-3
   '@types/cookie': ^0.5.1
   '@vitejs/plugin-legacy': ^2.0.1
   cookie: ^0.4.1
@@ -27,7 +27,7 @@ dependencies:
 devDependencies:
   '@playwright/test': 1.25.1
   '@sveltejs/adapter-auto': 1.0.0-next.67
-  '@sveltejs/kit': /@tal500/kit/1.0.0-next.431-legacy-builds-2_t2tbozn4lafbvgp422mqqlpf7y
+  '@sveltejs/kit': /@tal500/kit/1.0.0-next.445-legacy-builds-3_t2tbozn4lafbvgp422mqqlpf7y
   '@types/cookie': 0.5.1
   '@vitejs/plugin-legacy': 2.0.1_bpqwzpjtn5u44ua4kjic7sqxvy
   custom-event-polyfill: 1.0.7
@@ -228,8 +228,8 @@ packages:
       - supports-color
     dev: true
 
-  /@tal500/kit/1.0.0-next.431-legacy-builds-2_t2tbozn4lafbvgp422mqqlpf7y:
-    resolution: {integrity: sha512-KPiSk3JDUuDGb/B9IjK3FfjPnKqyuL9Ohj0mnykCXfwaZmnXTXoq9eXQIbeOPWIMON5ai14+wJoSg58ZwhHEOA==}
+  /@tal500/kit/1.0.0-next.445-legacy-builds-3_t2tbozn4lafbvgp422mqqlpf7y:
+    resolution: {integrity: sha512-tF7IlUegpcCLl43+3gqtx7Uw2qJkMb1mulpV73bDEzhCWQaFYlfk0GSrdtE2GbyUlaAzH8qzVzxWFzNSPjfHtA==}
     engines: {node: '>=16.9'}
     hasBin: true
     requiresBuild: true
