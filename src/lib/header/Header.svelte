@@ -61,7 +61,6 @@
 	nav {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
 	}
 
 	svg {
@@ -71,7 +70,6 @@
 	}
 
 	path {
-		fill: rgba(255, 255, 255, 0.7);
 		fill: var(--background);
 	}
 
@@ -84,7 +82,6 @@
 		justify-content: center;
 		align-items: center;
 		list-style: none;
-		background: rgba(255, 255, 255, 0.7);
 		background: var(--background);
 		background-size: contain;
 	}
@@ -114,7 +111,6 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 1em;
-		color: rgba(0, 0, 0, 0.7);
 		color: var(--heading-color);
 		font-weight: 700;
 		font-size: 0.8rem;
@@ -125,7 +121,6 @@
 	}
 
 	a:hover {
-		color: #ff3e00;
 		color: var(--accent-color);
 	}
 </style>

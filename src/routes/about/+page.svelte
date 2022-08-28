@@ -28,9 +28,7 @@
 <style>
 	.content {
 		width: 100%;
-		max-width: 42rem;
 		max-width: var(--column-width);
-		margin: 4rem auto 0 auto;
 		margin: var(--column-margin-top) auto 0 auto;
 	}
 </style>

@@ -11,6 +11,7 @@
 	--accent-color: #ff3e00;
 	--heading-color: rgba(0, 0, 0, 0.7);
 	--text-color: #444444;
+	--background: rgba(255, 255, 255, 0.7);
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
@@ -19,14 +20,7 @@
 body {
 	min-height: 100vh;
 	margin: 0;
-	background-color: #b9c6d2;
 	background-color: var(--primary-color);
-	background: linear-gradient(
-		180deg,
-		#b9c6d2 0%,
-		#d0dde9 10.45%,
-		#edf0f8 41.35%
-	);
 	background: linear-gradient(
 		180deg,
 		var(--primary-color) 0%,
@@ -61,7 +55,6 @@ h1,
 h2,
 p {
 	font-weight: 400;
-	color: rgba(0, 0, 0, 0.7);
 	color: var(--heading-color);
 }
 
@@ -70,7 +63,6 @@ p {
 }
 
 a {
-	color: #ff3e00;
 	color: var(--accent-color);
 	text-decoration: none;
 }
@@ -90,7 +82,6 @@ h2 {
 
 pre {
 	font-size: 16px;
-	font-family: 'Fira Mono', monospace;
 	font-family: var(--font-mono);
 	background-color: rgba(255, 255, 255, 0.45);
 	border-radius: 3px;
