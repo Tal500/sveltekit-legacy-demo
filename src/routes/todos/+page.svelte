@@ -102,6 +102,7 @@
 	}
 
 	.todo {
+		display: flex;
 		display: grid;
 		grid-template-columns: 2rem 1fr 2rem;
 		grid-gap: 0.5rem;
