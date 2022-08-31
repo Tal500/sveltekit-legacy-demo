@@ -4,7 +4,7 @@ specifiers:
   '@fontsource/fira-mono': ^4.5.0
   '@playwright/test': ^1.25.0
   '@sveltejs/adapter-auto': next
-  '@sveltejs/kit': npm:@tal500/kit@1.0.0-next.445-legacy-builds-3
+  '@sveltejs/kit': npm:@tal500/kit@1.0.0-next.456-legacy-builds-4
   '@types/cookie': ^0.5.1
   '@vitejs/plugin-legacy': ^2.0.1
   cookie: ^0.4.1
@@ -29,10 +29,10 @@ dependencies:
 
 devDependencies:
   '@playwright/test': 1.25.1
-  '@sveltejs/adapter-auto': 1.0.0-next.67
-  '@sveltejs/kit': /@tal500/kit/1.0.0-next.445-legacy-builds-3_t2tbozn4lafbvgp422mqqlpf7y
+  '@sveltejs/adapter-auto': 1.0.0-next.70
+  '@sveltejs/kit': /@tal500/kit/1.0.0-next.456-legacy-builds-4_cjtov5fokoyfl2yvmeiiwztsqe
   '@types/cookie': 0.5.1
-  '@vitejs/plugin-legacy': 2.0.1_bpqwzpjtn5u44ua4kjic7sqxvy
+  '@vitejs/plugin-legacy': 2.0.1_364ecmfiue6zvwsbxvehyjifkq
   custom-event-polyfill: 1.0.7
   postcss: 8.4.16
   postcss-load-config: 4.0.1_postcss@8.4.16
@@ -45,7 +45,7 @@ devDependencies:
   tslib: 2.4.0
   typescript: 4.7.4
   unorm: 1.6.0
-  vite: 3.1.0-beta.0_terser@5.15.0
+  vite: 3.1.0-beta.1_terser@5.15.0
   whatwg-fetch: 3.6.2
 
 packages:
@@ -328,12 +328,12 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sveltejs/adapter-auto/1.0.0-next.67:
-    resolution: {integrity: sha512-nLwdMIRK0igwoOTCwLW3bDr6VofT+8bFF/Nsvd+5t77X/AeS4cE667HOH1XcL4Is3JRKyWmBaE1iJnVhbbKfEg==}
+  /@sveltejs/adapter-auto/1.0.0-next.70:
+    resolution: {integrity: sha512-FJlDO6oUqbuFJjQoguGb4gdBj3iCSM3evFXkBpQ7hvwu3y2gKbcdzsxdn9tZ5LzkHh79CeJcwiszXFQ8usKk/A==}
     dependencies:
       '@sveltejs/adapter-cloudflare': 1.0.0-next.32
-      '@sveltejs/adapter-netlify': 1.0.0-next.73
-      '@sveltejs/adapter-vercel': 1.0.0-next.69
+      '@sveltejs/adapter-netlify': 1.0.0-next.75
+      '@sveltejs/adapter-vercel': 1.0.0-next.72
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -347,8 +347,8 @@ packages:
       worktop: 0.8.0-next.14
     dev: true
 
-  /@sveltejs/adapter-netlify/1.0.0-next.73:
-    resolution: {integrity: sha512-dPsSPHbihycOvqfwNX6X2jfmdqYaZUKkDgky5vxR2sraTlMEwSo97s9N/fwRWwy9ORZi6DT5Ty0i0G+xJWiKPg==}
+  /@sveltejs/adapter-netlify/1.0.0-next.75:
+    resolution: {integrity: sha512-1zTR/U/ceEAyqIGJ74v54G+JbIR+fSmTN9qfqGOM0gBwVoBVRUujGm4tDFJQNYzvuGzVnC7br/rhYMLZd2JluQ==}
     dependencies:
       '@iarna/toml': 2.2.5
       esbuild: 0.14.54
@@ -356,8 +356,8 @@ packages:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/adapter-vercel/1.0.0-next.69:
-    resolution: {integrity: sha512-E5mSkD3x3zYuJU5hPRmoqblrKZtEj2lRwhObnXf4OSFsMej2VUzoogbhaXHcVt57j0Ja5HgO07u7v9VUGOhi+w==}
+  /@sveltejs/adapter-vercel/1.0.0-next.72:
+    resolution: {integrity: sha512-oNs8FQaYC2NnwDcvX/jc9MDNqXc9HxwGPQNkd+1vBpFVWZl9mShQgCcOMzfTOIH0ka984jYNa0ZawYYHex79xg==}
     dependencies:
       '@vercel/nft': 0.22.0
       esbuild: 0.14.54
@@ -366,8 +366,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/vite-plugin-svelte/1.0.2_t2tbozn4lafbvgp422mqqlpf7y:
-    resolution: {integrity: sha512-8tTVbNuraeDchBaArNbwaZLpO0feM7BRSdZU5yeM4Clasx2p1p1CYBoWh+VgxZlxiark49HXummkHqKztbl8lA==}
+  /@sveltejs/vite-plugin-svelte/1.0.3_cjtov5fokoyfl2yvmeiiwztsqe:
+    resolution: {integrity: sha512-0Qu51m2W9RBlxWPp8i31KJpnqmjWMOne8vAzgmOX6ZM9uX+/RAv6BNhEMcNoP5MsyLjyW1ZTCiJoaZZ5EeqpFg==}
     engines: {node: ^14.18.0 || >= 16}
     peerDependencies:
       diff-match-patch: ^1.0.5
@@ -384,23 +384,23 @@ packages:
       magic-string: 0.26.2
       svelte: /@tal500/svelte/3.49.0-repo-advanced-1
       svelte-hmr: 0.14.12_sj6ytrafmxhfklmrgzwhegiysq
-      vite: 3.1.0-beta.0_terser@5.15.0
+      vite: 3.1.0-beta.1_terser@5.15.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@tal500/kit/1.0.0-next.445-legacy-builds-3_t2tbozn4lafbvgp422mqqlpf7y:
-    resolution: {integrity: sha512-tF7IlUegpcCLl43+3gqtx7Uw2qJkMb1mulpV73bDEzhCWQaFYlfk0GSrdtE2GbyUlaAzH8qzVzxWFzNSPjfHtA==}
-    engines: {node: '>=16.9'}
+  /@tal500/kit/1.0.0-next.456-legacy-builds-4_cjtov5fokoyfl2yvmeiiwztsqe:
+    resolution: {integrity: sha512-szzG3q10wFUg+nJeGIkK12HAeGeSO1zZMod2UCyP2NJlVM9Q5bTXCXynRgh4SzW75rzD2RRbe32yiZUwD9yRhw==}
+    engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
     peerDependencies:
       svelte: ^3.44.0
-      vite: ^3.0.0
+      vite: ^3.1.0-beta.1
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 1.0.2_t2tbozn4lafbvgp422mqqlpf7y
+      '@sveltejs/vite-plugin-svelte': 1.0.3_cjtov5fokoyfl2yvmeiiwztsqe
       cookie: 0.5.0
-      devalue: 2.0.1
+      devalue: 3.1.2
       kleur: 4.1.5
       magic-string: 0.26.2
       mime: 3.0.0
@@ -411,7 +411,7 @@ packages:
       svelte: /@tal500/svelte/3.49.0-repo-advanced-1
       tiny-glob: 0.2.9
       undici: 5.10.0
-      vite: 3.1.0-beta.0_terser@5.15.0
+      vite: 3.1.0-beta.1_terser@5.15.0
     transitivePeerDependencies:
       - diff-match-patch
       - supports-color
@@ -460,7 +460,7 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-legacy/2.0.1_bpqwzpjtn5u44ua4kjic7sqxvy:
+  /@vitejs/plugin-legacy/2.0.1_364ecmfiue6zvwsbxvehyjifkq:
     resolution: {integrity: sha512-kKC56rfsXwebApzyuZqdQlGmqTyH1ugy0l0rY58gx5OXzq4/t5/DCqGUoz53Db51OqfjRqsHfqmvq9or6w9k/Q==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -473,7 +473,7 @@ packages:
       regenerator-runtime: 0.13.9
       systemjs: 6.12.3
       terser: 5.15.0
-      vite: 3.1.0-beta.0_terser@5.15.0
+      vite: 3.1.0-beta.1_terser@5.15.0
     dev: true
 
   /abbrev/1.1.1:
@@ -731,8 +731,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /devalue/2.0.1:
-    resolution: {integrity: sha512-I2TiqT5iWBEyB8GRfTDP0hiLZ0YeDJZ+upDxjBfOC2lebO5LezQMv7QvIUTzdb64jQyAKLf1AHADtGN+jw6v8Q==}
+  /devalue/3.1.2:
+    resolution: {integrity: sha512-wUXbMGPAsBx79UF14nsWSsJlC7RcwPlf2w3bGheODWxKx57e9n68ceoijbqCJCEbjyo0S79nqfPwQgyijwLaqw==}
     dev: true
 
   /electron-to-chromium/1.4.233:
@@ -2126,8 +2126,8 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
 
-  /vite/3.1.0-beta.0_terser@5.15.0:
-    resolution: {integrity: sha512-qOcYZ93lM1SYdulB3FQbhl6Udj6/I1rPnHwy1LIUxb8ihe5C05N64TeO7QegVceOrP3mW5m1Cdi+G5IRSrNP0Q==}
+  /vite/3.1.0-beta.1_terser@5.15.0:
+    resolution: {integrity: sha512-JGEnWSC0hfarcduTCQr6wnRjPLbT62iLCK59HBJXYt9oyWSUMtrvcnDqzvLFC+lHV6KGFQkmWlZucyIQmgUnLA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
