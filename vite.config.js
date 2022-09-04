@@ -1,5 +1,15 @@
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 import { sveltekit } from '@sveltejs/kit/vite';
 import legacy from '@vitejs/plugin-legacy';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+/**
+ * 
+ * @param {string} path 
+ * @returns 
+ */
+const localPath = (path) => JSON.stringify(resolve(__dirname, path)).slice(1, -1)
 
 /** @type {import('vite').UserConfig} */
 const config = {
@@ -16,7 +26,8 @@ const config = {
 				// 'global-this' should be used so 'regenerator-runtime' wouldn't do CSP issues
 				'core-js/proposals/global-this',
 				'regenerator-runtime/runtime',
-				'unorm'
+				'unorm',
+				localPath('polyfills/formdata.js')
 			],
 			//modernPolyfills: ['es.promise.finally'] // You may add modern polyfills too!
 		}),

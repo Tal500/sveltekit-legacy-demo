@@ -1,6 +1,4 @@
-import { invalidate } from '$app/navigation';
-
-import './local-polyfills/formdata.js';
+import { invalidateAll } from '$app/navigation';
 
 // this action (https://svelte.dev/tutorial/actions) allows us to
 // progressively enhance a <form> that already works without JS
@@ -58,7 +56,7 @@ export function enhance(
 
 			if (response.ok) {
 				if (result) result({ data, form, response });
-				invalidate();
+				invalidateAll();
 			} else if (error) {
 				error({ data, form, error: null, response });
 			} else {

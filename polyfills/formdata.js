@@ -1,17 +1,21 @@
 // This is a local (non-robust) polyfill that supports the `get()` function of FormData, if none.
 // It's doing so by brutally modify the constructor, and just save the form on some attribute.
 
-type FormDataExtended = FormData & { __local_polyfill_form: HTMLFormElement | undefined };
+/** @typedef {FormData & { __local_polyfill_form: HTMLFormElement | undefined }} FormDataExtended */
 
 if (!FormData.prototype.get) {
     const originalConstructor = FormData.prototype.constructor;
-    FormData.prototype.constructor = function (form: HTMLFormElement | undefined) {
+    /**
+     * 
+     * @param {HTMLFormElement | undefined} form 
+     */
+    FormData.prototype.constructor = function (form) {
         originalConstructor(form);
-        (this as FormDataExtended).__local_polyfill_form = form;
+        /** @type {FormDataExtended} */ (this).__local_polyfill_form = form;
     };
 
     FormData.prototype.get = function (name) {
-        const formExtended = this as FormDataExtended;
+        const formExtended = /** @type {FormDataExtended} */ (this);
         const form = formExtended.__local_polyfill_form;
 
         if (!form) {
@@ -21,7 +25,7 @@ if (!FormData.prototype.get) {
         const elements = form.elements;
 
         for (let i = 0; i < elements.length; ++i) {
-            const item = elements.item(i) as HTMLInputElement;
+            const item = /** @type {HTMLInputElement} */ elements.item(i);
             if (item.name === name) {
                 return item.value;
             }
