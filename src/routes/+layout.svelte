@@ -1,4 +1,7 @@
 <script lang="ts">
+	// Loading first polyfills that are shared between for legacy&modern browsers.
+	import 'abortcontroller-polyfill';
+
 	import { page } from '$app/stores';
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';

@@ -34,6 +34,7 @@ const config = {
 				'core-js/proposals/global-this',
 				'regenerator-runtime/runtime',
 				'unorm',
+				'path-composedpath-polyfill',
 				localPath('polyfills/formdata.js')
 			],
 			//modernPolyfills: ['es.promise.finally'] // You may add modern polyfills too!
