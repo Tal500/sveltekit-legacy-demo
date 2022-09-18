@@ -1,22 +1,16 @@
-# create-svelte
+# SvelteKit Legacy Demo
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is a demo for the proposed legacy support of SvelteKit, introduced in PR sveltejs/kit#6265.
 
-## Creating a project
+This demo is based on `create-svelte`, and was addapted to support legacy browsers.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Currently it's tested manually only on IE11 (and works as well on modern browsers of course).
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+More info are in the referenced PR.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've cloned the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
 npm run dev
