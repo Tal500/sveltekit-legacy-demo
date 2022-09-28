@@ -1,6 +1,5 @@
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { resolve as importResolve } from 'import-meta-resolve';
 import { sveltekit } from '@sveltejs/kit/vite';
 import legacy from '@vitejs/plugin-legacy';
 
@@ -11,12 +10,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  * @returns 
  */
 const localPath = (path) => JSON.stringify(resolve(__dirname, path)).slice(1, -1);
-
-const kitIndexPath = await importResolve('@sveltejs/kit', import.meta.url);
-const kitWord = '/kit';
-const kitPathUnnormalized = kitIndexPath.slice(0, kitIndexPath.lastIndexOf(kitWord) + kitWord.length);
-const filePrefix = 'file:///';
-const kitPath = kitPathUnnormalized.startsWith(filePrefix) ? kitPathUnnormalized.slice(filePrefix.length) : kitPathUnnormalized;
 
 /** @type {import('vite').UserConfig} */
 const config = {
@@ -39,13 +32,7 @@ const config = {
 			],
 			//modernPolyfills: ['es.promise.finally'] // You may add modern polyfills too!
 		}),
-	],
-
-	server: {
-		fs: {
-			allow: [kitPath]
-		}
-	}
+	]
 };
 
 export default config;
