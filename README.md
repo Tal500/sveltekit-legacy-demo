@@ -8,6 +8,10 @@ Currently it's tested manually only on IE11 (and works as well on modern browser
 
 More info are in the referenced PR.
 
+# Online Preview
+
+An online demonstration is available at https://sveltekit-legacy-demo.pages.dev/ .
+
 ## Developing
 
 Once you've cloned the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
