@@ -10,7 +10,7 @@ More info are in the referenced PR.
 
 # Online Preview
 
-An online demonstration is available at https://sveltekit-legacy-demo.pages.dev/ .
+An online demonstration is available at https://sveltekit-legacy-demo.pages.dev .
 
 ## Developing
 
