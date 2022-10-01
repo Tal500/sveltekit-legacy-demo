@@ -1,10 +1,14 @@
 // This is a local (non-robust) polyfill that supports the `get()` function of FormData, if none.
 // It's doing so by brutally modify the constructor, and just save the form on some attribute.
 
+// Notice we're using `let` instead of `const` in many places, so it will be compatible with other legacy browsers.
+// This is needed since the legacy polyfill sources are currently not being transformed to legacy browsers currently, see:
+//  https://github.com/vitejs/vite/issues/10284
+
 /** @typedef {FormData & { __local_polyfill_form: HTMLFormElement | undefined }} FormDataExtended */
 
 if (!FormData.prototype.get) {
-    const originalConstructor = FormData.prototype.constructor;
+    let /* const */ originalConstructor = FormData.prototype.constructor;
     /**
      * 
      * @param {HTMLFormElement | undefined} form 
@@ -15,17 +19,17 @@ if (!FormData.prototype.get) {
     };
 
     FormData.prototype.get = function (name) {
-        const formExtended = /** @type {FormDataExtended} */ (this);
-        const form = formExtended.__local_polyfill_form;
+        let /* const */ formExtended = /** @type {FormDataExtended} */ (this);
+        let /* const */ form = formExtended.__local_polyfill_form;
 
         if (!form) {
             return null;
         }
 
-        const elements = form.elements;
+        let /* const */ elements = form.elements;
 
         for (let i = 0; i < elements.length; ++i) {
-            const item = /** @type {HTMLInputElement} */ elements.item(i);
+            let /* const */ item = /** @type {HTMLInputElement} */ elements.item(i);
             if (item.name === name) {
                 return item.value;
             }
