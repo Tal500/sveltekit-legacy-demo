@@ -1,4 +1,5 @@
 # SvelteKit Legacy Demo
+[![CI](https://github.com/Tal500/sveltekit-legacy-demo/actions/workflows/CI.yml/badge.svg)](https://github.com/Tal500/sveltekit-legacy-demo/actions/workflows/CI.yml)
 
 This is a demo for the proposed legacy support of SvelteKit, introduced in PR sveltejs/kit#6265.
 
