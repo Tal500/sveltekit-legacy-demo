@@ -54,6 +54,9 @@ jobs:
       
       # Run Selenium Tests
       - name: Test
-        run: npm run preview & npm run test-selenium
+        run: |
+          Add-Content $env:GITHUB_PATH $pwd
+          dir
+          npm run preview & npm run test-selenium
         env:
           DEBUG: pw:webserver
