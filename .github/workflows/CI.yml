@@ -50,7 +50,7 @@ jobs:
       - name: Setup NuGet.exe
         uses: nuget/setup-nuget@v1
       - name: Install IE11 Web Driver
-        run: nuget install Selenium.WebDriver.IEDriver -Version 4.5.0 && dir $pwd/Selenium.WebDriver.IEDriver.4.5.0
+        run: nuget install Selenium.WebDriver.IEDriver -Version 4.5.0 && dir $pwd/Selenium.WebDriver.IEDriver.4.5.0 && dir $pwd/Selenium.WebDriver.IEDriver.4.5.0/build && dir $pwd/Selenium.WebDriver.IEDriver.4.5.0
       
       # Run Selenium Tests
       - name: Test
