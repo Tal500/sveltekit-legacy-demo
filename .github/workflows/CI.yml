@@ -40,10 +40,6 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Svelte Check
-        if: success() || failure() # Run even if previous failed
-        run: npm run check
       
       # Build Frontend
       - name: Build Frontend
