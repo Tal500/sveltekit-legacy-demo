@@ -55,7 +55,11 @@ jobs:
       # Run Selenium Tests
       - name: Test
         run: |
-          Add-Content $env:GITHUB_PATH $pwd\\Selenium.WebDriver.IEDriver.4.5.0\\driver
+          Add-Content $env:GITHUB_PATH $pwd\Selenium.WebDriver.IEDriver.4.5.0\driver
+          $env:GITHUB_PATH
+          $env:PATH
+          Add-Content $env:PATH $pwd\Selenium.WebDriver.IEDriver.4.5.0\driver
+          $env:PATH
           echo $env:GITHUB_PATH
           dir
           npm run preview & npm run test-selenium
