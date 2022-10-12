@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   tests:
     runs-on: windows-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     
     steps:
       # Checkout
@@ -42,26 +42,19 @@ jobs:
         run: pnpm install --frozen-lockfile
       
       # Build Frontend
-#       - name: Build Frontend
-#         if: success() || failure() # Run even if previous failed
-#         run: npm run build
+      - name: Build Frontend
+        if: success() || failure() # Run even if previous failed
+        run: npm run build
       
       # Setup Nuget and install IE11 web driver
       - name: Setup NuGet.exe
         uses: nuget/setup-nuget@v1
       - name: Install IE11 Web Driver
-        run: nuget install Selenium.WebDriver.IEDriver -Version 4.5.0 && dir $pwd/Selenium.WebDriver.IEDriver.4.5.0 && dir $pwd/Selenium.WebDriver.IEDriver.4.5.0/build && dir $pwd/Selenium.WebDriver.IEDriver.4.5.0/driver
+        run: nuget install Selenium.WebDriver.IEDriver -Version 4.5.0
       
       # Run Selenium Tests
-      - name: Test
+      - name: Selenium Tests
         run: |
           Add-Content $env:GITHUB_PATH $pwd\Selenium.WebDriver.IEDriver.4.5.0\driver
-          $env:GITHUB_PATH
           $Env:PATH += ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
-          $Env:PATH
-          echo $env:GITHUB_PATH
-          echo $Env:PATH
-          dir
           npm run preview & npm run test-selenium
-        env:
-          DEBUG: pw:webserver
