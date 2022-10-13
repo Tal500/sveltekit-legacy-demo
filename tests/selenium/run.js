@@ -18,7 +18,7 @@ const makeBuilder = () => {
 
             return new Builder().forBrowser('internet explorer').setIeOptions(options);
         case 'edge':
-            return new Builder().forBrowser('edge');
+            return new Builder().forBrowser('MicrosoftEdge');
         case 'safari':
             return new Builder().forBrowser('safari');
         case 'firefox':
