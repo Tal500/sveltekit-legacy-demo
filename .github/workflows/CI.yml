@@ -54,7 +54,6 @@ jobs:
       - name: Install Edge Web Driver
         run: |
           $full = (wmic.exe DATAFILE WHERE "NAME='C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'" GET Version /value).Split("") -join ""
-          echo "Full Edge Details: $full"
           $version = $full.Substring($full.indexOf("=") + 1)
           echo "Current Edge Version: $version"
           $destination = "edge-driver.zip"
@@ -67,4 +66,6 @@ jobs:
           $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview &
           $Env:BROWSER = "ie"
+          npm run test-selenium
+          $Env:BROWSER = "edge"
           npm run test-selenium
