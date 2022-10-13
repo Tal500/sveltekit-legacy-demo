@@ -54,15 +54,15 @@ jobs:
       - name: Install Edge Web Driver
         run: |
           start msedge
-          $full = wmic.exe DATAFILE WHERE "NAME='C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'" GET Version /value
+          $full = (wmic.exe DATAFILE WHERE "NAME='C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'" GET Version /value).Split("") -join ""
           echo "Full Edge Details: $full"
-          $version = (Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon -Name version).version
+          $version = $full.Substring($full.indexOf("=") + 1)
           echo "Current Edge Version: $version"
           nuget install Selenium.WebDriver.MSEdgeDriver -Version $version
           dir Selenium.WebDriver.MSEdgeDriver
       
       # Run Selenium Tests
-      - name: Selenium Tests IE11
+      - name: Selenium Tests on Edge and IE11
         run: |
           $Env:PATH += ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview &
