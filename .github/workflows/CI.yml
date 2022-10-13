@@ -42,9 +42,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       
       # Build Frontend
-      - name: Build Frontend
-        if: success() || failure() # Run even if previous failed
-        run: npm run build
+#       - name: Build Frontend
+#         if: success() || failure() # Run even if previous failed
+#         run: npm run build
       
       # Setup Nuget and install IE11&Edge web drivers
       - name: Setup NuGet.exe
@@ -53,6 +53,8 @@ jobs:
         run: nuget install Selenium.WebDriver.IEDriver -Version 4.5.0
       - name: Install Edge Web Driver
         run: |
+          $full = Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon -Name version
+          echo "Full Edge Details: $full"
           $version = (Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon -Name version).version
           echo "Current Edge Version: $version"
           nuget install Selenium.WebDriver.MSEdgeDriver -Version $version
