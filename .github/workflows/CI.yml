@@ -64,7 +64,7 @@ jobs:
       # Run Selenium Tests
       - name: Selenium Tests on Edge and IE11
         run: |
-          $Env:PATH += + ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
+          $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview &
           $Env:BROWSER = "edge"
           npm run test-selenium
