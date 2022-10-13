@@ -53,7 +53,7 @@ jobs:
         run: nuget install Selenium.WebDriver.IEDriver -Version 4.5.0
       - name: Install Edge Web Driver
         run: |
-          $full = Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon -Name version
+          $full = Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon
           echo "Full Edge Details: $full"
           $version = (Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon -Name version).version
           echo "Current Edge Version: $version"
