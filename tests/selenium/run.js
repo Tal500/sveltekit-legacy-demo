@@ -7,9 +7,8 @@ const tests = [
     { name: 'Home', func: homeTest}
 ];
 
-const makeBuilder = () => {
-    const browser = process.env.BROWSER || 'ie';
-
+/** @type {(browser: string) => Builder} */
+const makeBuilder = (browser) => {
     switch (browser) {
         case 'ie':
             const options = new IEOptions();
@@ -31,18 +30,21 @@ const makeBuilder = () => {
 };
 
 (async () => {
+    const browser = process.env.BROWSER || 'ie';
     const baseUrl = (process.argv.length >= 3) ? process.argv[2] : 'http://localhost:4173';
 
     // Doesn't work for IE11 with `.setLoggingPrefs(prefs)`. Can we fix this?
     // const prefs = new logging.Preferences();
     // prefs.setLevel(logging.Type.BROWSER, logging.Level.DEBUG);
 
-    const driver = await makeBuilder()
+    const driver = await makeBuilder(browser)
         /*.setLoggingPrefs(prefs)*/.build();
     
     const context = { baseUrl, driver };
 
     try {
+        console.log(`=== Starting selenium tests on browser ${browser} ===`)
+
         for (const test of tests) {
             console.log(`Starting test ${test.name}...`);
             await test.func(context);
