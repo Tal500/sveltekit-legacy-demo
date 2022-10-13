@@ -42,9 +42,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       
       # Build Frontend
-       - name: Build Frontend
-         if: success() || failure() # Run even if previous failed
-         run: npm run build
+      - name: Build Frontend
+        if: success() || failure() # Run even if previous failed
+        run: npm run build
       
       # Setup Nuget and install IE11&Edge web drivers
       - name: Setup NuGet.exe
