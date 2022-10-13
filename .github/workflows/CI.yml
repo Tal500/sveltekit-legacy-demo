@@ -54,7 +54,7 @@ jobs:
       - name: Install Edge Web Driver
         run: |
           start msedge
-          $full = Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon
+          $full = wmic.exe DATAFILE WHERE "NAME='C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'" GET Version /value
           echo "Full Edge Details: $full"
           $version = (Get-ItemProperty -Path HKCU:\Software\Microsoft\Edge\BLBeacon -Name version).version
           echo "Current Edge Version: $version"
