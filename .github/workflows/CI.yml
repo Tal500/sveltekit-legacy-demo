@@ -42,9 +42,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       
       # Build Frontend
-#       - name: Build Frontend
-#         if: success() || failure() # Run even if previous failed
-#         run: npm run build
+       - name: Build Frontend
+         if: success() || failure() # Run even if previous failed
+         run: npm run build
       
       # Setup Nuget and install IE11&Edge web drivers
       - name: Setup NuGet.exe
@@ -53,18 +53,18 @@ jobs:
         run: nuget install Selenium.WebDriver.IEDriver -Version 4.5.0
       - name: Install Edge Web Driver
         run: |
-          start msedge
           $full = (wmic.exe DATAFILE WHERE "NAME='C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'" GET Version /value).Split("") -join ""
           echo "Full Edge Details: $full"
           $version = $full.Substring($full.indexOf("=") + 1)
           echo "Current Edge Version: $version"
-          nuget install Selenium.WebDriver.MSEdgeDriver -Version $version
-          dir Selenium.WebDriver.MSEdgeDriver
+          $destination = "edge-driver.zip"
+          Invoke-RestMethod -Uri https://msedgedriver.azureedge.net/$version/edgedriver_win64.zip -OutFile $destination
+          Expand-Archive $destination -DestinationPath "edge-driver"
       
       # Run Selenium Tests
       - name: Selenium Tests on Edge and IE11
         run: |
-          $Env:PATH += ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
+          $Env:PATH += + ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview &
           $Env:BROWSER = "edge"
           npm run test-selenium
