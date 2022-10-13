@@ -66,7 +66,5 @@ jobs:
         run: |
           $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview &
-          $Env:BROWSER = "edge"
-          npm run test-selenium
           $Env:BROWSER = "ie"
           npm run test-selenium
