@@ -6,9 +6,14 @@ export async function test({driver, baseUrl}) {
     await driver.get(baseUrl);
     await driver.wait(until.titleIs('Home'), 1000);
 
-    const counterDisplay = driver.findElement(By.css(".counter-viewport strong:not([aria-hidden])"))
-    const increaseButton = driver.findElement(By.css('button[aria-label="Increase the counter by one"]'));
-    const decreaseButton = driver.findElement(By.css('button[aria-label="Decrease the counter by one"]'));
+    while (await driver.executeScript('return document.readyState') !== 'complete') {
+        console.log('Waiting for JS to be loaded...');
+        await driver.sleep(100);
+    }
+
+    const counterDisplay = await driver.findElement(By.css(".counter-viewport strong:not([aria-hidden])"))
+    const increaseButton = await driver.findElement(By.css('button[aria-label="Increase the counter by one"]'));
+    const decreaseButton = await driver.findElement(By.css('button[aria-label="Decrease the counter by one"]'));
 
     let exectedCount = 0;
 
