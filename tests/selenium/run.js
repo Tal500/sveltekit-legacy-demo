@@ -2,9 +2,11 @@ import { Builder /*, logging*/ } from 'selenium-webdriver';
 import { Options as IEOptions } from 'selenium-webdriver/ie.js';
 
 import { test as homeTest } from './home.js';
+import { test as aboutTest } from './about.js';
 
 const tests = [
-    { name: 'Home', func: homeTest}
+    { name: 'Home', func: homeTest },
+    { name: 'About', func: aboutTest }
 ];
 
 /** @type {(browser: string) => Builder} */
@@ -54,6 +56,8 @@ const makeBuilder = (browser) => {
         // This logging doesn't work on IE11 either
         //const logEntries = driver.manage().logs().get(logging.Level.ALL.name);
         //console.log("Logs: " + JSON.stringify(logEntries));
+    } catch (err) {
+        console.error(err);
     } finally {
         // Clean drive destruction consumes time for some reason, so don't perform this on CI.
         if (!process.env.CI) {
