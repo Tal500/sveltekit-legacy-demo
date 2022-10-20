@@ -9,7 +9,7 @@ export default {
                     disableDeprecationNotice: true
                 }
             },
-            importFrom: './src/app.css'
+            importFrom: './src/routes/styles.css'
         })
     ]
 };

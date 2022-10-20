@@ -2,16 +2,14 @@
 	// Loading first polyfills that are shared between for legacy&modern browsers.
 	import 'abortcontroller-polyfill';
 
-	import { page } from '$app/stores';
-	import Header from '$lib/header/Header.svelte';
-	import '../app.css';
-
-	$: needHackyFix = $page.url.pathname === '/';
+	import Header from './Header.svelte';
+	import './styles.css';
 </script>
 
 <Header />
 
-<main style={needHackyFix ? "display: block;" : undefined}>
+<!-- Having the main container be flex causes issues on IE11 -->
+<main style={import.meta.env.LEGACY ? "display: block" : undefined}>
 	<slot />
 </main>
 

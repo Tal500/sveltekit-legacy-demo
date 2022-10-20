@@ -28,6 +28,7 @@ const config = {
 				'regenerator-runtime/runtime',
 				'unorm',
 				'path-composedpath-polyfill',
+				'keyboardevent-key-polyfill',
 				localPath('polyfills/formdata.js')
 			],
 			//modernPolyfills: ['es.promise.finally'] // You may add modern polyfills too!

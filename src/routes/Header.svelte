@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+	import logo from '$lib/images/svelte-logo.svg';
+	import github from '$lib/images/github.svg';
 </script>
 
 <header>
@@ -19,8 +20,8 @@
 			<li class:active={$page.url.pathname === '/about'}>
 				<a href="/about">About</a>
 			</li>
-			<li class:active={$page.url.pathname === '/todos'}>
-				<a href="/todos">Todos</a>
+			<li class:active={$page.url.pathname.startsWith('/sverdle')}>
+				<a href="/sverdle">Sverdle</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -29,7 +30,9 @@
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		<a href="https://github.com/sveltejs/kit">
+			<img src={github} alt="GitHub" />
+		</a>
 	</div>
 </header>
 
@@ -61,6 +64,7 @@
 	nav {
 		display: flex;
 		justify-content: center;
+		--background: rgba(255, 255, 255, 0.7);
 	}
 
 	svg {
@@ -70,6 +74,7 @@
 	}
 
 	path {
+		fill: rgba(255, 255, 255, 0.7);
 		fill: var(--background);
 	}
 
@@ -82,6 +87,7 @@
 		justify-content: center;
 		align-items: center;
 		list-style: none;
+		background: rgba(255, 255, 255, 0.7);
 		background: var(--background);
 		background-size: contain;
 	}
@@ -102,8 +108,8 @@
 		left: calc(50% - var(--size));
 		border: 6px solid transparent;
 		border: var(--size) solid transparent;
-		border-top: 6px solid var(--accent-color);
-		border-top: var(--size) solid var(--accent-color);
+		border-top: 6px solid var(--color-theme-1);
+		border-top: var(--size) solid var(--color-theme-1);
 	}
 
 	nav a {
@@ -111,7 +117,7 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 1em;
-		color: var(--heading-color);
+		color: var(--color-text);
 		font-weight: 700;
 		font-size: 0.8rem;
 		text-transform: uppercase;
@@ -121,6 +127,6 @@
 	}
 
 	a:hover {
-		color: var(--accent-color);
+		color: var(--color-theme-1);
 	}
 </style>

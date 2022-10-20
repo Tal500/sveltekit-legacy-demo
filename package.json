@@ -12,6 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@neoconfetti/svelte": "^1.0.0",
 		"@playwright/test": "^1.25.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "npm:@tal500/kit@1.0.0-next.480-legacy-builds-7",
@@ -20,6 +21,7 @@
 		"abortcontroller-polyfill": "^1.7.3",
 		"custom-event-polyfill": "^1.0.7",
 		"import-meta-resolve": "^2.1.0",
+		"keyboardevent-key-polyfill": "^1.1.0",
 		"path-composedpath-polyfill": "^0.0.1",
 		"postcss": ">=8.4.6 <9.0.0",
 		"postcss-load-config": "^4.0.1",
