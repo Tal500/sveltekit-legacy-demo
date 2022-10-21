@@ -270,6 +270,7 @@
 	input {
 		aspect-ratio: 1;
 		width: 100%;
+		max-width: 200px;/* We limit the width for browsers that doesn't support neither grid nor flex box. */
 		display: flex;
 		align-items: center;
 		justify-content: center;

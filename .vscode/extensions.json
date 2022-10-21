@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "webben.browserslist",
+        "svelte.svelte-vscode",
+        "ms-vscode.vscode-typescript-next"
+    ]
+}

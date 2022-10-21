@@ -50,7 +50,7 @@
 	.counter button {
 		width: 2em;
 		padding: 0;
-		display: flex;
+		display: block;
 		align-items: center;
 		justify-content: center;
 		border: 0;
