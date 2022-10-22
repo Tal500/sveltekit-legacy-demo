@@ -56,8 +56,6 @@ const makeBuilder = (browser) => {
         // This logging doesn't work on IE11 either
         //const logEntries = driver.manage().logs().get(logging.Level.ALL.name);
         //console.log("Logs: " + JSON.stringify(logEntries));
-    } catch (err) {
-        console.error(err);
     } finally {
         // Clean drive destruction consumes time for some reason, so don't perform this on CI.
         if (!process.env.CI) {

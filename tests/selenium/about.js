@@ -9,6 +9,6 @@ export async function test({driver, baseUrl}) {
 
     await waitForJS(driver);
 
-    const headerElement = await driver.findElement(By.css(".content h1"));
+    const headerElement = await driver.findElement(By.css(".text-column h1"));
     assertStrictEquals(await headerElement.getText(), "About this app");
 }
