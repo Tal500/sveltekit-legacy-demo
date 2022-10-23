@@ -111,6 +111,11 @@
 
 <svelte:window on:keydown={keydown} />
 
+<svelte:head>
+	<title>Sverlde</title>
+	<meta name="description" content="Sverlde game" />
+</svelte:head>
+
 <form
 	method="POST"
 	action="?/enter"
