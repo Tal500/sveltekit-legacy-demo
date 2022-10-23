@@ -103,9 +103,12 @@
 	function keydown(event: KeyboardEvent) {
 		if (event.metaKey) return;
 
-		document
-			.querySelector(`[data-key="${event.key}"]`)
-			?.dispatchEvent(createMouseEvent('click', { cancelable: true }));
+		const keyElement = document.querySelector(`[data-key="${event.key.toLowerCase()}"]`);
+
+		if (keyElement != null) {
+			event.preventDefault();
+			keyElement.dispatchEvent(createMouseEvent('click', { cancelable: true }));
+		}
 	}
 </script>
 
