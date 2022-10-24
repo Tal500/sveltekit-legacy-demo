@@ -9,7 +9,7 @@ import legacy from '@vitejs/plugin-legacy';
 // and from the other hand, postcssPresetEnv can't read the value passed to vite legacy plugin.
 // This is why we don't specify the browser list explicitly in this vite config, but rather added this utility function
 //  to read the browser list from the file.
-const readBrowsersList = () => /** @type {string} */(readFileSync("./.browserslistrc", 'UTF-8'))
+const readBrowsersList = () => readFileSync("./.browserslistrc", { encoding: 'utf-8' })
 	.split(/\r?\n/) // Split it to lines
 	.map((line) => {
 		const trimmedLine = line.trim();
