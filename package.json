@@ -8,7 +8,7 @@
 		"preview": "vite preview",
 		"test-playwright": "playwright test",
 		"test-selenium": "node tests/selenium/run.js",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check": "svelte-kit sync && svelte-check && tsc --noEmit",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
@@ -29,7 +29,7 @@
 		"proxy-polyfill": "^0.3.2",
 		"regenerator-runtime": "^0.13.9",
 		"svelte": "^3.52.0",
-		"svelte-check": "^2.7.1",
+		"svelte-check": "^2.9.2",
 		"svelte-preprocess": "^4.10.6",
 		"terser": "^5.15.0",
 		"tslib": "^2.3.1",
@@ -44,7 +44,7 @@
 		"cookie": "^0.4.1"
 	},
 	"optionalDependencies": {
-		"@types/selenium-webdriver": "^4.1.5",
+		"@types/selenium-webdriver": "^4.1.9",
 		"selenium-webdriver": "^4.5.0"
 	}
 }

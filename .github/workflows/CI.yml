@@ -40,6 +40,10 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      # Run basic Svelte checks
+      - name: Svelte Check
+        run: npm run check-svelte
       
       # Build Frontend
       - name: Build Frontend

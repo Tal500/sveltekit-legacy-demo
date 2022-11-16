@@ -7,7 +7,7 @@ specifiers:
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': npm:@tal500/kit@1.0.0-next.546-legacy-builds-9
   '@types/cookie': ^0.5.1
-  '@types/selenium-webdriver': ^4.1.5
+  '@types/selenium-webdriver': ^4.1.9
   '@vitejs/plugin-legacy': ^2.2.0
   abortcontroller-polyfill: ^1.7.3
   cookie: ^0.4.1
@@ -22,7 +22,7 @@ specifiers:
   regenerator-runtime: ^0.13.9
   selenium-webdriver: ^4.5.0
   svelte: ^3.52.0
-  svelte-check: ^2.7.1
+  svelte-check: ^2.9.2
   svelte-preprocess: ^4.10.6
   terser: ^5.15.0
   tslib: ^2.3.1
@@ -36,7 +36,7 @@ dependencies:
   cookie: 0.4.2
 
 optionalDependencies:
-  '@types/selenium-webdriver': 4.1.5
+  '@types/selenium-webdriver': 4.1.9
   selenium-webdriver: 4.5.0
 
 devDependencies:
@@ -57,7 +57,7 @@ devDependencies:
   proxy-polyfill: 0.3.2
   regenerator-runtime: 0.13.9
   svelte: 3.53.1
-  svelte-check: 2.8.1_xriabsdob543pok7infpfxxr64
+  svelte-check: 2.9.2_xriabsdob543pok7infpfxxr64
   svelte-preprocess: 4.10.7_hfxzsyhnglsq5espcnxs34jbbe
   terser: 5.15.0
   tslib: 2.4.0
@@ -399,9 +399,8 @@ packages:
       '@types/node': 18.7.13
     dev: true
 
-  /@types/selenium-webdriver/4.1.5:
-    resolution: {integrity: sha512-Lfu97JK5b2jAxCUHH8uMjmhUiQZCGDyVzSAskFFZuWcprtcwjMkEPZE/SiIM5hOGQJVs982BAF26a3kmw8iiJw==}
-    requiresBuild: true
+  /@types/selenium-webdriver/4.1.9:
+    resolution: {integrity: sha512-QNCYI3Rgjf3bZ2GZwXnUpOJUPR8p7+c9Um9MEKggLaUaF8UfjitH5aPCV1PF0DHVEiPYsXayGVS6+67DO3VILw==}
     dependencies:
       '@types/ws': 8.5.3
     dev: false
@@ -1731,8 +1730,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-check/2.8.1_xriabsdob543pok7infpfxxr64:
-    resolution: {integrity: sha512-cibyY1sgt3ONIDnQbSgV2X9AJFhwEslRHNo95lijrYfPzVEvTvbmL2ohsUyqB5L7j1GhLXtQbjCJ4lZZ/fwbeQ==}
+  /svelte-check/2.9.2_xriabsdob543pok7infpfxxr64:
+    resolution: {integrity: sha512-DRi8HhnCiqiGR2YF9ervPGvtoYrheE09cXieCTEqeTPOTJzfoa54Py8rovIBv4bH4n5HgZYIyTQ3DDLHQLl2uQ==}
     hasBin: true
     peerDependencies:
       svelte: ^3.24.0
