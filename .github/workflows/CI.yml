@@ -43,7 +43,7 @@ jobs:
 
       # Run basic Svelte checks
       - name: Svelte Check
-        run: npm run check-svelte
+        run: npm run check
       
       # Build Frontend
       - name: Build Frontend
