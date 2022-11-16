@@ -1,17 +1,17 @@
 import { Builder /*, logging*/ } from 'selenium-webdriver';
 import { Options as IEOptions } from 'selenium-webdriver/ie.js';
 
+import { test as navigationTest } from './navigation.js';
 import { test as homeTest } from './home.js';
 import { test as aboutTest } from './about.js';
 import { test as sverdleTest } from './sverdle.js';
 
 const tests = [
+    { name: 'Navigation', func: navigationTest },
     { name: 'Home', func: homeTest },
     { name: 'About', func: aboutTest },
     { name: 'Sverdle', func: sverdleTest }
 ];
-
-// TODO: Add navigation test
 
 /** @type {(browser: string) => Builder} */
 const makeBuilder = (browser) => {
