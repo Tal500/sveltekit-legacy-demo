@@ -93,6 +93,13 @@ async function testSendWord(driver, row, word, isKeyboard) {
 }
 
 /**
+ * 
+ * @param {import("selenium-webdriver").WebDriver} driver
+ * @returns 
+ */
+const waitServerResponse = (driver) => driver.sleep(800);// let the server time to response
+
+/**
  * @param {import("selenium-webdriver").WebDriver} driver
  * 
  * */
@@ -129,10 +136,14 @@ export async function test({driver, baseUrl}) {
 
     // valid words from the keyboard
     await testSendWord(driver, rows[currentRow++], 'hello', true);
+    await waitServerResponse(driver);
+
     await testSendWord(driver, rows[currentRow++], 'world', true);
+    await waitServerResponse(driver);
 
     // a valid word from the mouse
     await testSendWord(driver, rows[currentRow++], 'great', false);
+    await waitServerResponse(driver);
 
     // the correct word from the mouse
     const correctWord = await cheatAndFindCorrectWord(driver);
@@ -140,7 +151,7 @@ export async function test({driver, baseUrl}) {
     await testSendWord(driver, rows[currentRow++], correctWord, false);
 
     // Check the winning message
-    assert((await driver.findElement(By.css(`button[data-key="enter"]`)).getText()).indexOf('you won :)') >= 0);
+    assert((await driver.findElement(By.css(`button[data-key="enter"].restart`)).getText()).indexOf('you won :)') >= 0);
 
     ///////////
     ///////////
