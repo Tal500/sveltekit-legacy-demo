@@ -21,7 +21,12 @@ export const load: PageServerLoad = ({ cookies }) => {
 		/**
 		 * The correct answer, revealed if the game is over
 		 */
-		answer: game.answers.length >= 6 ? game.answer : null
+		answer: game.answers.length >= 6 ? game.answer : null,
+
+		/**
+		 * This is used only for testing (or am I lying?)
+		 */
+		cheatAnswer: game.answer
 	};
 };
 
