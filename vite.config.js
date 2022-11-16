@@ -43,6 +43,7 @@ const config = {
 				'regenerator-runtime/runtime',
 				'unorm',
 				'path-composedpath-polyfill',
+				'proxy-polyfill/proxy.min.js',
 				localPath('polyfills/initKeyboardeventKeyPolyfill.js'),
 				localPath('polyfills/formdata.js')
 			],
