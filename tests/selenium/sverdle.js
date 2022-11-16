@@ -149,6 +149,7 @@ export async function test({driver, baseUrl}) {
     const correctWord = await cheatAndFindCorrectWord(driver);
     console.log("The correct answer is " + correctWord)
     await testSendWord(driver, rows[currentRow++], correctWord, false);
+    await waitServerResponse(driver);
 
     // Check the winning message
     assert((await driver.findElement(By.css(`button[data-key="enter"].restart`)).getText()).indexOf('you won :)') >= 0);
