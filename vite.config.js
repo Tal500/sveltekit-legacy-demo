@@ -24,7 +24,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  * @param {string} path 
  * @returns 
  */
-const localPath = (path) => JSON.stringify(resolve(__dirname, path)).slice(1, -1);
+const localPath = (path) => resolve(__dirname, path);
 
 /** @type {import('vite').UserConfig} */
 const config = {
