@@ -22,10 +22,11 @@ export async function test({driver, baseUrl}) {
         assertStrictEquals(await counterDisplay.getText(), exectedCount.toString(), `Assert that the current count is ${exectedCount}`);
     };
 
+    let percyCount = 0;
     const postPress = async () => {
         await driver.wait(until.elementTextIs(counterDisplay, exectedCount.toString()));
         await assertCount();
-        await percySnapshot(driver, `Home Page (exectedCount: ${exectedCount})`);
+        await percySnapshot(driver, `Home Page (exectedCount: ${exectedCount}, percyCount: ${percyCount})`);
     };
 
     const increase = async () => {
