@@ -71,12 +71,12 @@ jobs:
         run: |
           $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview &
-          if [[ -z "${DEPLOY_ENV}" ]]; then
-            TEST_SELENIUM_COMMAND="npm run test-selenium"
-          else
-            TEST_SELENIUM_COMMAND="npx percy exec -- npm run test-selenium"
-          fi
+          if ($null -eq $env:PERCY_TOKEN) {
+            $TEST_SELENIUM_COMMAND = "npm run test-selenium"
+          } else {
+            $TEST_SELENIUM_COMMAND = "npx percy exec -- npm run test-selenium"
+          }
           $Env:BROWSER = "ie"
-          eval $TEST_SELENIUM_COMMAND
+          Invoke-expression $TEST_SELENIUM_COMMAND
           $Env:BROWSER = "edge"
-          eval $TEST_SELENIUM_COMMAND
+          Invoke-expression $TEST_SELENIUM_COMMAND
