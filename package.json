@@ -45,6 +45,8 @@
 		"cookie": "^0.4.1"
 	},
 	"optionalDependencies": {
+		"@percy/cli": "^1.17.0",
+		"@percy/selenium-webdriver": "^1.0.2",
 		"@types/selenium-webdriver": "^4.1.9",
 		"selenium-webdriver": "^4.5.0"
 	},

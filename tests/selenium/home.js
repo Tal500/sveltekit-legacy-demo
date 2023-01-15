@@ -1,4 +1,5 @@
 import { By, until } from 'selenium-webdriver';
+import { default as percySnapshot } from '@percy/selenium-webdriver';
 
 import { assertStrictEquals, waitForJS } from './utils.js';
 
@@ -8,6 +9,8 @@ export async function test({driver, baseUrl}) {
     await driver.wait(until.titleIs('Home'), 1000);
 
     await waitForJS(driver);
+    
+    await percySnapshot(driver, 'Home Page (Initial)');
 
     const counterDisplay = await driver.findElement(By.css(".counter-viewport strong:not([aria-hidden])"));
     const increaseButton = await driver.findElement(By.css('button[aria-label="Increase the counter by one"]'));
@@ -19,18 +22,22 @@ export async function test({driver, baseUrl}) {
         assertStrictEquals(await counterDisplay.getText(), exectedCount.toString(), `Assert that the current count is ${exectedCount}`);
     };
 
+    const postPress = async () => {
+        await driver.wait(until.elementTextIs(counterDisplay, exectedCount.toString()));
+        await assertCount();
+        await percySnapshot(driver, `Home Page (exectedCount: ${exectedCount})`);
+    };
+
     const increase = async () => {
         ++exectedCount;
         await increaseButton.click();
-        await driver.wait(until.elementTextIs(counterDisplay, exectedCount.toString()));
-        await assertCount();
+        await postPress();
     };
 
     const decrease = async () => {
         --exectedCount;
         await decreaseButton.click();
-        await driver.wait(until.elementTextIs(counterDisplay, exectedCount.toString()));
-        await assertCount();
+        await postPress();
     };
 
     await assertCount();

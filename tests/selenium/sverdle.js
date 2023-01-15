@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { By, Key, until } from 'selenium-webdriver';
+import { default as percySnapshot } from '@percy/selenium-webdriver';
 
 import { assertStrictEquals, waitForJS } from './utils.js';
 
@@ -113,6 +114,8 @@ export async function test({driver, baseUrl}) {
 
     await waitForJS(driver);
 
+    percySnapshot(driver, 'Sverdle Initial');
+
     const howToPlayElement = await driver.findElement(By.css('a[href="/sverdle/how-to-play"]'));
     assertStrictEquals(await howToPlayElement.getText(), "How to play");
 
@@ -153,6 +156,8 @@ export async function test({driver, baseUrl}) {
 
     // Check the winning message
     assert((await driver.findElement(By.css(`button[data-key="enter"].restart`)).getText()).indexOf('you won :)') >= 0);
+
+    percySnapshot(driver, 'Sverdle Final');
 
     ///////////
     ///////////

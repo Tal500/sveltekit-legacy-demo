@@ -66,10 +66,17 @@ jobs:
       
       # Run Selenium Tests
       - name: Selenium Tests on Edge and IE11
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
           $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview &
+          if [[ -z "${DEPLOY_ENV}" ]]; then
+            TEST_SELENIUM_COMMAND="npm run test-selenium"
+          else
+            TEST_SELENIUM_COMMAND="npx percy exec -- npm run test-selenium"
+          fi
           $Env:BROWSER = "ie"
-          npm run test-selenium
+          eval $TEST_SELENIUM_COMMAND
           $Env:BROWSER = "edge"
-          npm run test-selenium
+          eval $TEST_SELENIUM_COMMAND

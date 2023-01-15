@@ -1,4 +1,5 @@
 import { By, until } from 'selenium-webdriver';
+import { default as percySnapshot } from '@percy/selenium-webdriver';
 
 import { assertStrictEquals, waitForJS } from './utils.js';
 
@@ -8,6 +9,8 @@ export async function test({driver, baseUrl}) {
     await driver.wait(until.titleIs('About'), 1000);
 
     await waitForJS(driver);
+    
+    await percySnapshot(driver, 'About Page');
 
     const headerElement = await driver.findElement(By.css(".text-column h1"));
     assertStrictEquals(await headerElement.getText(), "About this app");
