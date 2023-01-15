@@ -13,6 +13,7 @@ specifiers:
   cookie: ^0.4.1
   custom-event-polyfill: ^1.0.7
   import-meta-resolve: ^2.1.0
+  intersection-observer: ^0.12.2
   keyboardevent-key-polyfill: ^1.1.0
   path-composedpath-polyfill: ^0.0.1
   postcss: '>=8.4.6 <9.0.0'
@@ -49,6 +50,7 @@ devDependencies:
   abortcontroller-polyfill: 1.7.3
   custom-event-polyfill: 1.0.7
   import-meta-resolve: 2.1.0
+  intersection-observer: 0.12.2
   keyboardevent-key-polyfill: 1.1.0
   path-composedpath-polyfill: 0.0.1
   postcss: 8.4.16
@@ -967,6 +969,10 @@ packages:
 
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+
+  /intersection-observer/0.12.2:
+    resolution: {integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==}
+    dev: true
 
   /is-binary-path/2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}

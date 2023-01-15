@@ -21,6 +21,7 @@
 		"abortcontroller-polyfill": "^1.7.3",
 		"custom-event-polyfill": "^1.0.7",
 		"import-meta-resolve": "^2.1.0",
+		"intersection-observer": "^0.12.2",
 		"keyboardevent-key-polyfill": "^1.1.0",
 		"path-composedpath-polyfill": "^0.0.1",
 		"postcss": ">=8.4.6 <9.0.0",
