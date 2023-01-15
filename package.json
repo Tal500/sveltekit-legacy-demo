@@ -47,5 +47,10 @@
 	"optionalDependencies": {
 		"@types/selenium-webdriver": "^4.1.9",
 		"selenium-webdriver": "^4.5.0"
-	}
+	},
+	"browserslist": [
+		"> 0.05%",
+		"ie >= 11",
+		"chrome >= 14"
+	]
 }
