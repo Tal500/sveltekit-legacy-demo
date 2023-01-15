@@ -26,7 +26,7 @@ export async function test({driver, baseUrl}) {
     const postPress = async () => {
         await driver.wait(until.elementTextIs(counterDisplay, exectedCount.toString()));
         await assertCount();
-        await percySnapshot(driver, `Home Page (exectedCount: ${exectedCount}, percyCount: ${percyCount})`);
+        await percySnapshot(driver, `Home Page (exectedCount: ${exectedCount}, percyCount: ${++percyCount})`);
     };
 
     const increase = async () => {
