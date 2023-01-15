@@ -77,6 +77,6 @@ jobs:
             $TEST_SELENIUM_COMMAND = "npx percy exec -- npm run test-selenium"
           }
           $Env:BROWSER = "ie"
-          Invoke-expression $TEST_SELENIUM_COMMAND
+          npm run test-selenium
           $Env:BROWSER = "edge"
           Invoke-expression $TEST_SELENIUM_COMMAND
