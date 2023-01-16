@@ -65,7 +65,7 @@ jobs:
           Expand-Archive $destination -DestinationPath "edge-driver"
       
       # Run Selenium Tests
-      - name: Selenium Tests on Edge and IE11
+      - name: Selenium Tests on BrowserStack, IE11 and Edge
         env:
           BROWSER_STACK_SERVER: ${{ secrets.BROWSER_STACK_SERVER }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
