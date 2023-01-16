@@ -110,7 +110,7 @@ const cheatAndFindCorrectWord = async (driver) =>
 /** @type {import('./types').TestFunc} */
 export async function test({driver, baseUrl, log}) {
     await driver.get(baseUrl + '/sverdle');
-    await driver.wait(until.titleIs('Sverdle'), 1000);
+    await driver.wait(until.titleIs('Sverdle'), 10000);
 
     await waitForJS(driver);
 

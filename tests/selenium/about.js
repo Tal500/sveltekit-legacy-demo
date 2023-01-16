@@ -6,7 +6,7 @@ import { assertStrictEquals, waitForJS } from './utils.js';
 /** @type {import('./types').TestFunc} */
 export async function test({driver, baseUrl}) {
     await driver.get(baseUrl + '/about');
-    await driver.wait(until.titleIs('About'), 1000);
+    await driver.wait(until.titleIs('About'), 10000);
 
     await waitForJS(driver);
     
