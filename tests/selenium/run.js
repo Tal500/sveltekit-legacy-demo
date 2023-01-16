@@ -35,10 +35,8 @@ const makeBuilder = (browser) => {
     }
 };
 
-(async () => {
-    const browser = process.env.BROWSER || 'ie';
-    const baseUrl = (process.argv.length >= 3) ? process.argv[2] : 'http://localhost:4173';
-
+/** @type {(browser: string, baseUrl: string) => Promise<void>} */
+async function runOn(browser, baseUrl) {
     // Doesn't work for IE11 with `.setLoggingPrefs(prefs)`. Can we fix this?
     // const prefs = new logging.Preferences();
     // prefs.setLevel(logging.Type.BROWSER, logging.Level.DEBUG);
@@ -67,4 +65,13 @@ const makeBuilder = (browser) => {
             await driver.quit();
         }
     }
+}
+
+(() => {
+    const browsersArrStr = process.env.BROWSER || 'ie';
+    const baseUrl = (process.argv.length >= 3) ? process.argv[2] : 'http://localhost:4173';
+
+    const browsers = browsersArrStr.split(',').map(str => str.trim());
+
+    return Promise.all(browsers.map((browser) => runOn(browser, baseUrl)));
 })();
