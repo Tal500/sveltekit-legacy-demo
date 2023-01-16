@@ -47,7 +47,7 @@ async function runOn(browser, baseUrl) {
     const context = { baseUrl, driver };
 
     try {
-        console.log(`=== Starting selenium tests on browser ${browser} ===`)
+        console.log(`=== Starting selenium tests on browser ${browser} ===`);
 
         for (const test of tests) {
             console.log(`Starting test ${test.name}...`);
@@ -64,6 +64,8 @@ async function runOn(browser, baseUrl) {
             console.log('ending...');
             await driver.quit();
         }
+
+        console.log(`=== Finished selenium tests on browser ${browser} ===`);
     }
 }
 
