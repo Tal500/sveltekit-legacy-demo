@@ -67,6 +67,7 @@ jobs:
       # Run Selenium Tests
       - name: Selenium Tests on Edge and IE11
         env:
+          BROWSER_STACK_SERVER: ${{ secrets.BROWSER_STACK_SERVER }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
           $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
@@ -77,6 +78,10 @@ jobs:
             $TEST_SELENIUM_COMMAND = "npx percy exec -- npm run test-selenium"
           }
           try {
+            if ($null -ne $env:BROWSER_STACK_SERVER) {
+              $Env:BROWSER = "browser-stack"
+              npm run test-selenium
+            }
             $Env:BROWSER = "ie"
             npm run test-selenium
             $Env:BROWSER = "edge"

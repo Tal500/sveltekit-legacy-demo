@@ -1,10 +1,14 @@
 import { Builder /*, logging*/ } from 'selenium-webdriver';
 import { Options as IEOptions } from 'selenium-webdriver/ie.js';
 
+import { default as BrowserStackCaps } from './browser-stack-caps.js';
+
 import { test as navigationTest } from './navigation.js';
 import { test as homeTest } from './home.js';
 import { test as aboutTest } from './about.js';
 import { test as sverdleTest } from './sverdle.js';
+
+const browserStackServer = process.env.BROWSER_STACK_SERVER;
 
 const tests = [
     { name: 'Navigation', func: navigationTest },
@@ -13,8 +17,21 @@ const tests = [
     { name: 'Sverdle', func: sverdleTest }
 ];
 
-/** @type {(browser: string) => Builder} */
-const makeBuilder = (browser) => {
+/** @type {(browser: string, caps?: BrowserStackCaps[number]) => Builder} */
+const makeBuilder = (browser, caps) => {
+    if (caps) {
+        // In the case we're on BrowserStack testing
+
+        if (!browserStackServer) {
+            throw "Error: BROWSER_STACK_SERVER environment variable isn't defined, but requested to run tests in BrowserStack.";
+        }
+
+        return new Builder()
+            .usingServer(browserStackServer)
+            .withCapabilities(caps);
+    }
+    // otherwise
+
     switch (browser) {
         case 'ie':
             const options = new IEOptions();
@@ -35,13 +52,13 @@ const makeBuilder = (browser) => {
     }
 };
 
-/** @type {(browser: string, baseUrl: string) => Promise<void>} */
-async function runOn(browser, baseUrl) {
+/** @type {(browser: string, baseUrl: string, caps?: BrowserStackCaps[number]) => Promise<void>} */
+async function runOn(browser, baseUrl, caps = undefined) {
     // Doesn't work for IE11 with `.setLoggingPrefs(prefs)`. Can we fix this?
     // const prefs = new logging.Preferences();
     // prefs.setLevel(logging.Type.BROWSER, logging.Level.DEBUG);
 
-    const driver = await makeBuilder(browser)
+    const driver = await makeBuilder(browser, caps)
         /*.setLoggingPrefs(prefs)*/.build();
 
     /**
@@ -82,5 +99,11 @@ async function runOn(browser, baseUrl) {
 
     const browsers = browsersArrStr.split(',').map(str => str.trim());
 
-    return Promise.all(browsers.map((browser) => runOn(browser, baseUrl)));
+    return Promise.all(browsers.map((browser) => {
+        if (browser === 'browser-stack') {
+            return Promise.all(BrowserStackCaps.map(cap => runOn(`browser-stack:${cap.name}`, baseUrl, cap)));
+        } else {
+            return runOn(browser, baseUrl);
+        }
+    }));
 })();
