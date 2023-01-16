@@ -1,5 +1,6 @@
 # SvelteKit Legacy Demo
 [![CI](https://github.com/Tal500/sveltekit-legacy-demo/actions/workflows/CI.yml/badge.svg)](https://github.com/Tal500/sveltekit-legacy-demo/actions/workflows/CI.yml)
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/732c6ff4/sveltekit-legacy-demo)
 
 This is a demo for the proposed legacy support of SvelteKit, introduced in PR sveltejs/kit#6265.
 
@@ -38,4 +39,4 @@ You can preview the production build with `npm run preview`.
 
 ## Test
 
-This project is tested with BrowserStack
+This project is tested with BrowserStack, and you can see some of the automation results in the [Percy page](https://percy.io/732c6ff4/sveltekit-legacy-demo).
