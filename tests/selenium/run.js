@@ -43,16 +43,23 @@ async function runOn(browser, baseUrl) {
 
     const driver = await makeBuilder(browser)
         /*.setLoggingPrefs(prefs)*/.build();
+
+    /**
+     * Log the message with the browser name
+     * @param {string} message 
+     * @returns 
+     */
+    const log = (message) => console.log(`[${browser}]: ${message}`);
     
-    const context = { baseUrl, driver };
+    const context = { baseUrl, driver, log };
 
     try {
-        console.log(`=== Starting selenium tests on browser ${browser} ===`);
+        log('=== started ===');
 
         for (const test of tests) {
-            console.log(`Starting test ${test.name}...`);
+            log(`Starting test ${test.name}...`);
             await test.func(context);
-            console.log(`Test ${test.name} has ended.`);
+            log(`Test ${test.name} has ended.`);
         }
         
         // This logging doesn't work on IE11 either
@@ -61,11 +68,11 @@ async function runOn(browser, baseUrl) {
     } finally {
         // Clean drive destruction consumes time for some reason, so don't perform this on CI.
         if (!process.env.CI) {
-            console.log('ending...');
+            log('ending...');
             await driver.quit();
         }
 
-        console.log(`=== Finished selenium tests on browser ${browser} ===`);
+        log('=== finished ===');
     }
 }
 

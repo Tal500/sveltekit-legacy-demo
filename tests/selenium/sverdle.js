@@ -108,7 +108,7 @@ const cheatAndFindCorrectWord = async (driver) =>
     (await driver.executeScript('return document.getElementById("cheat-answer").content')).replaceAll('$', '');
 
 /** @type {import('./types').TestFunc} */
-export async function test({driver, baseUrl}) {
+export async function test({driver, baseUrl, log}) {
     await driver.get(baseUrl + '/sverdle');
     await driver.wait(until.titleIs('Sverdle'), 1000);
 
@@ -150,7 +150,7 @@ export async function test({driver, baseUrl}) {
 
     // the correct word from the mouse
     const correctWord = await cheatAndFindCorrectWord(driver);
-    console.log("The correct answer is " + correctWord)
+    log("The correct answer is " + correctWord)
     await testSendWord(driver, rows[currentRow++], correctWord, false);
     await waitServerResponse(driver);
 
