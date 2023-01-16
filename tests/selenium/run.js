@@ -91,7 +91,7 @@ async function runOn(browser, baseUrl, caps = undefined) {
     log('=== finished ===');
 }
 
-(() => {
+await (() => {
     const browsersArrStr = process.env.BROWSER || 'ie';
     const baseUrl = (process.argv.length >= 3) ? process.argv[2] : 'http://localhost:4173';
 
