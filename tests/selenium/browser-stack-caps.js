@@ -5,7 +5,6 @@ export default [
             "os": "Windows",
             "osVersion": "7",
             "browserVersion": "11.0",
-            "buildName" : "browserstack-build-1",
             "sessionName" : "IE11 (Windows 7)",
             "sendKeys" : "true"
         },
@@ -19,7 +18,6 @@ export default [
     //         "os": "OS X",
     //         "osVersion": "Sierra",
     //         "browserVersion": "10.1",
-    //         "buildName" : "browserstack-build-1",
     //         "sessionName" : "Safari 10.1",
     //         "sendKeys" : "true"
     //     },
@@ -29,7 +27,6 @@ export default [
     //     "os": "Windows",
     //     "osVersion": "7",
     //     "browserVersion": "109.0",
-    //     "buildName" : "browserstack-build-1",
     //     "sessionName" : "Chrome",
     //     "sendKeys" : "true"
     // },
