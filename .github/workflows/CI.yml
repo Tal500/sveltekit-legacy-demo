@@ -89,14 +89,14 @@ jobs:
             BrowserStackLocal.exe --key $BROWSERSTACK_ACCESS_KEY &
             $Env:BROWSER = "browser-stack"
             npm run test-selenium
-            if(!$?) { $HAD_FAILED = true }
+            if(!$?) { $HAD_FAILED = $true }
           }
           $Env:BROWSER = "ie"
           npm run test-selenium
-          if(!$?) { $HAD_FAILED = true }
+          if(!$?) { $HAD_FAILED = $true }
           $Env:BROWSER = "edge"
           Invoke-expression $TEST_SELENIUM_COMMAND
-          if(!$?) { $HAD_FAILED = true }
+          if(!$?) { $HAD_FAILED = $true }
           if($HAD_FAILED) {
             throw "One or more selenium tests had failed!"
             exit 1
