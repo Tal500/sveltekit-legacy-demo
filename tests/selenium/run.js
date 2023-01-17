@@ -11,6 +11,7 @@ import { test as sverdleTest } from './sverdle.js';
 const browserStackUsername = process.env.BROWSERSTACK_USERNAME;
 const browserStackAccessKey = process.env.BROWSERSTACK_ACCESS_KEY;
 const browserStackProjectName = process.env.BROWSERSTACK_PROJECT_NAME;
+const browserStackBuildName = process.env.BROWSERSTACK_BUILD_NAME;
 
 const tests = [
     { name: 'Navigation', func: navigationTest },
@@ -33,6 +34,9 @@ const makeBuilder = (browser, caps) => {
         caps['bstack:options'].local = true;
         if (browserStackProjectName) {
             caps['bstack:options'].projectName = browserStackProjectName;
+        }
+        if (browserStackBuildName) {
+            caps['bstack:options'].buildName = browserStackBuildName;
         }
 
         return new Builder()
