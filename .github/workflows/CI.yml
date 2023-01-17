@@ -72,7 +72,7 @@ jobs:
         
       - name: 'BrowserStack Env Setup'
         uses: 'browserstack/github-actions/setup-env@master'
-        if: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        if: secrets.BROWSERSTACK_ACCESS_KEY
         with:
           username:  ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
