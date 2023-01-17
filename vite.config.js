@@ -33,7 +33,9 @@ const config = {
 				localPath('polyfills/initKeyboardeventKeyPolyfill.js'),
 				localPath('polyfills/formdata.js')
 			],
-			//modernPolyfills: ['es.promise.finally'] // You may add modern polyfills too!
+			modernPolyfills: [
+				'es.array.at'// For Safary
+			]
 		}),
 	]
 };
