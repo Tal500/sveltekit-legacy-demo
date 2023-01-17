@@ -63,12 +63,6 @@ jobs:
           $destination = "edge-driver.zip"
           Invoke-RestMethod -Uri https://msedgedriver.azureedge.net/$version/edgedriver_win64.zip -OutFile $destination
           Expand-Archive $destination -DestinationPath "edge-driver"
-      - name: Install BrowserStackLocal
-        run: |
-          $url = "https://www.browserstack.com/browserstack-local/BrowserStackLocal-win32.zip"
-          $destination = "edge-driver.zip"
-          Invoke-RestMethod -Uri $url -OutFile $destination
-          Expand-Archive $destination -DestinationPath "browser-stack-local"
       
       - name: Check for BrowserStack secret availability
         id: browser-stack-secret-check
@@ -88,15 +82,23 @@ jobs:
         with:
           username:  ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          build-name: BUILD_INFO
-          project-name: SvelteKit Legacy Demo
+          build-name: 'BUILD_INFO'
+          project-name: 'SvelteKit Legacy Demo'
+      
+      - name: 'Start BrowserStackLocal Tunnel'
+        uses: 'browserstack/github-actions/setup-local@master'
+        if: steps.browser-stack-secret-check.outputs.available
+        with:
+          local-testing: 'start'
+          local-logging-level: 'all-logs'
+          local-identifier: 'random'
       
       # Run Selenium Tests
       - name: Selenium Tests on BrowserStack, IE11 and Edge
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
-          $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver" + ";" + $pwd + "\browser-stack-local"
+          $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           npm run preview -- --host &
           if ($null -eq $env:PERCY_TOKEN) {
             $TEST_SELENIUM_COMMAND = "npm run test-selenium"
@@ -105,7 +107,6 @@ jobs:
           }
           $HAD_FAILED = $false
           if ($null -ne $env:BROWSERSTACK_ACCESS_KEY) {
-            BrowserStackLocal.exe --key $BROWSERSTACK_ACCESS_KEY &
             $Env:BROWSER = "browser-stack"
             npm run test-selenium
             if(!$?) { $HAD_FAILED = $true }
@@ -120,3 +121,9 @@ jobs:
             throw "One or more selenium tests had failed!"
             exit 1
           }
+
+      - name: 'Stop BrowserStackLocal'
+        uses: 'browserstack/github-actions/setup-local@master'
+        if: steps.browser-stack-secret-check.outputs.available
+        with:
+          local-testing: 'stop'

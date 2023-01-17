@@ -12,6 +12,7 @@ const browserStackUsername = process.env.BROWSERSTACK_USERNAME;
 const browserStackAccessKey = process.env.BROWSERSTACK_ACCESS_KEY;
 const browserStackProjectName = process.env.BROWSERSTACK_PROJECT_NAME;
 const browserStackBuildName = process.env.BROWSERSTACK_BUILD_NAME;
+const browserStackLocalIdentifier = process.env.BROWSERSTACK_LOCAL_IDENTIFIER;
 
 const tests = [
     { name: 'Navigation', func: navigationTest },
@@ -37,6 +38,9 @@ const makeBuilder = (browser, caps) => {
         }
         if (browserStackBuildName) {
             caps['bstack:options'].buildName = browserStackBuildName;
+        }
+        if (browserStackLocalIdentifier) {
+            caps['bstack:options'].localIdentifier = browserStackLocalIdentifier;
         }
 
         return new Builder()

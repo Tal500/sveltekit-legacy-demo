@@ -6,6 +6,7 @@ export type BrowserStackCaps = (typeof BrowserStackCapsList)[number] & {
     'bstack:options'? : {
         local?: boolean;
         projectName?: string;
+        localIdentifier?: string;
     }
 };
 
