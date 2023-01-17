@@ -8,7 +8,8 @@ export type BrowserStackCaps = (typeof BrowserStackCapsList)[number] & {
         projectName?: string;
         buildName?: string;
         localIdentifier?: string;
-    }
+    },
+    actionsEnabled?: boolean;
 };
 
 export interface Context {
