@@ -75,18 +75,38 @@ async function runOn(browser, baseUrl, caps = undefined) {
     const log = (message) => console.log(`[${browser}]: ${message}`);
     
     const context = { baseUrl, driver, log, actionsEnabled: caps?.actionsEnabled ?? true };
-
+    
     log('=== started ===');
 
-    for (const test of tests) {
-        log(`Starting test ${test.name}...`);
-        await test.func(context);
-        log(`Test ${test.name} has ended.`);
+    try {
+        for (const test of tests) {
+            log(`Starting test ${test.name}...`);
+            await test.func(context);
+            log(`Test ${test.name} has ended.`);
+        }
+        
+        // This logging doesn't work on IE11 either
+        //const logEntries = driver.manage().logs().get(logging.Level.ALL.name);
+        //console.log("Logs: " + JSON.stringify(logEntries));
+
+        if (caps) {
+            // If on BrowserStack, report that the test finsihed
+            await driver.executeScript(
+                'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed","reason": "All tests for this browser passed!"}}'
+            );
+        }
+    } catch (err) {
+        if (caps) {
+            // If on BrowserStack, report that the test error
+            await driver.executeScript(
+                `browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed","reason": "Some error during testing: \"${
+                    JSON.stringify(`${err}`).slice(1, -1)
+                }\""}`
+            );
+        }
+
+        throw err;// rethrow
     }
-    
-    // This logging doesn't work on IE11 either
-    //const logEntries = driver.manage().logs().get(logging.Level.ALL.name);
-    //console.log("Logs: " + JSON.stringify(logEntries));
 
     // Clean drive destruction consumes time for some reason, so don't perform this on CI.
     if (!process.env.CI) {
