@@ -53,6 +53,7 @@
 	"browserslist": [
 		"> 0.05%",
 		"ie >= 11",
-		"chrome >= 14"
+		"chrome >= 14",
+		"safari >= 10"
 	]
 }
