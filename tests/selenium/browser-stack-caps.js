@@ -7,8 +7,7 @@ export default [
             "browserVersion": "11.0",
             "buildName" : "browserstack-build-1",
             "sessionName" : "IE11 (Windows 7)",
-            "sendKeys" : "true",
-            local: 'true'
+            "sendKeys" : "true"
         },
         // BrowserStack have issues with driver actions, so disable it.
         // Notice that IE11 is being tested locally, so we shouldn't be worry about that we can't use driver actions on BrowserStack.
@@ -22,8 +21,7 @@ export default [
     //         "browserVersion": "10.1",
     //         "buildName" : "browserstack-build-1",
     //         "sessionName" : "Safari 10.1",
-    //         "sendKeys" : "true",
-    //         local: 'true'
+    //         "sendKeys" : "true"
     //     },
     // },
     // {
@@ -33,8 +31,7 @@ export default [
     //     "browserVersion": "109.0",
     //     "buildName" : "browserstack-build-1",
     //     "sessionName" : "Chrome",
-    //     "sendKeys" : "true",
-    //     local: 'true'
+    //     "sendKeys" : "true"
     // },
     // "browserName": "Chrome",
     // }

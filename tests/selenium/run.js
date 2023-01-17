@@ -1,7 +1,7 @@
 import { Builder /*, logging*/ } from 'selenium-webdriver';
 import { Options as IEOptions } from 'selenium-webdriver/ie.js';
 
-import { default as BrowserStackCaps } from './browser-stack-caps.js';
+import { default as BrowserStackCapsList } from './browser-stack-caps.js';
 
 import { test as navigationTest } from './navigation.js';
 import { test as homeTest } from './home.js';
@@ -18,7 +18,7 @@ const tests = [
     { name: 'Sverdle', func: sverdleTest }
 ];
 
-/** @type {(browser: string, caps?: BrowserStackCaps[number]) => Builder} */
+/** @type {(browser: string, caps?: import('./types.js').BrowserStackCaps) => Builder} */
 const makeBuilder = (browser, caps) => {
     if (caps) {
         // In the case we're on BrowserStack testing
@@ -27,6 +27,10 @@ const makeBuilder = (browser, caps) => {
             throw "Error: BROWSERSTACK_USERNAME or BROWSERSTACK_ACCESS_KEY" + 
                 " environment variables aren't defined, but requested to run tests in BrowserStack.";
         }
+
+        // Add the automated caps:
+        caps['bstack:options'].local = true;
+        caps['bstack:options'].projectName = 'SvelteKit Legacy Demo';
 
         return new Builder()
             .usingServer(`http://${browserStackUsername}:${browserStackAccessKey}@hub.browserstack.com/wd/hub`)
@@ -54,7 +58,7 @@ const makeBuilder = (browser, caps) => {
     }
 };
 
-/** @type {(browser: string, baseUrl: string, caps?: BrowserStackCaps[number]) => Promise<void>} */
+/** @type {(browser: string, baseUrl: string, caps?: import('./types.js').BrowserStackCaps) => Promise<void>} */
 async function runOn(browser, baseUrl, caps = undefined) {
     // Doesn't work for IE11 with `.setLoggingPrefs(prefs)`. Can we fix this?
     // const prefs = new logging.Preferences();
@@ -101,7 +105,8 @@ await (() => {
 
     return Promise.all(browsers.map((browser) => {
         if (browser === 'browser-stack') {
-            return Promise.all(BrowserStackCaps.map(cap => runOn(`browser-stack:${cap['bstack:options'].sessionName}`, baseUrl, cap)));
+            return Promise.all(BrowserStackCapsList.map(
+                cap => runOn(`browser-stack:${cap['bstack:options'].sessionName}`, baseUrl, cap)));
         } else {
             return runOn(browser, baseUrl);
         }
