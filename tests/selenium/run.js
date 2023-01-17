@@ -119,8 +119,9 @@ async function runOn(browser, baseUrl, caps = undefined) {
         throw err;// rethrow
     }
 
-    // Clean drive destruction consumes time for some reason, so don't perform this on CI.
-    if (!process.env.CI) {
+    // Clean drive destruction consumes time for some reason, so don't perform this on CI,
+    //  unless on BrowserStack (because we don't want it to marked as "TIMED OUT").
+    if (!process.env.CI || caps) {
         log('ending...');
         await driver.quit();
     }
