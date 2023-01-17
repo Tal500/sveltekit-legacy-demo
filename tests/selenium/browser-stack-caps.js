@@ -1,35 +1,41 @@
 export default [
     {
-        name: 'IE11 (Windows 7)',
         browserName: "IE",
         'bstack:options' : {
             "os": "Windows",
             "osVersion": "7",
             "browserVersion": "11.0",
             "buildName" : "browserstack-build-1",
-            "sessionName" : "Parallel test 1",
+            "sessionName" : "IE11 (Windows 7)",
+            "sendKeys" : "true",
+            local: 'true'
         },
+        // BrowserStack have issues with driver actions, so disable it.
+        // Notice that IE11 is being tested locally, so we shouldn't be worry about that we can't use driver actions on BrowserStack.
+        actionsEnabled: false
     },
     // {
-    //     name: 'IE10 (Windows 7)',
-    //     browserName: "IE",
-    //     'bstack:options' : {
-    //         "os": "Windows",
-    //         "osVersion": "7",
-    //         "browserVersion": "10.0",
-    //         "buildName" : "browserstack-build-1",
-    //         "sessionName" : "Parallel test 2",
-    //     }
-    // },
-    // {
-    //     name: 'Safari 10.1',
     //     browserName: "Safari",
     //     'bstack:options' : {
     //         "os": "OS X",
     //         "osVersion": "Sierra",
     //         "browserVersion": "10.1",
     //         "buildName" : "browserstack-build-1",
-    //         "sessionName" : "Parallel test 3",
+    //         "sessionName" : "Safari 10.1",
+    //         "sendKeys" : "true",
+    //         local: 'true'
     //     },
     // },
+    // {
+    // 'bstack:options' : {
+    //     "os": "Windows",
+    //     "osVersion": "7",
+    //     "browserVersion": "109.0",
+    //     "buildName" : "browserstack-build-1",
+    //     "sessionName" : "Chrome",
+    //     "sendKeys" : "true",
+    //     local: 'true'
+    // },
+    // "browserName": "Chrome",
+    // }
 ];

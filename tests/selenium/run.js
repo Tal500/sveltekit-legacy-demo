@@ -8,7 +8,8 @@ import { test as homeTest } from './home.js';
 import { test as aboutTest } from './about.js';
 import { test as sverdleTest } from './sverdle.js';
 
-const browserStackServer = process.env.BROWSER_STACK_SERVER;
+const browserStackUsername = process.env.BROWSERSTACK_USERNAME;
+const browserStackAccessKey = process.env.BROWSERSTACK_ACCESS_KEY;
 
 const tests = [
     { name: 'Navigation', func: navigationTest },
@@ -22,12 +23,13 @@ const makeBuilder = (browser, caps) => {
     if (caps) {
         // In the case we're on BrowserStack testing
 
-        if (!browserStackServer) {
-            throw "Error: BROWSER_STACK_SERVER environment variable isn't defined, but requested to run tests in BrowserStack.";
+        if (!browserStackUsername || !browserStackAccessKey) {
+            throw "Error: BROWSERSTACK_USERNAME or BROWSERSTACK_ACCESS_KEY" + 
+                " environment variables aren't defined, but requested to run tests in BrowserStack.";
         }
 
         return new Builder()
-            .usingServer(browserStackServer)
+            .usingServer(`http://${browserStackUsername}:${browserStackAccessKey}@hub.browserstack.com/wd/hub`)
             .withCapabilities(caps);
     }
     // otherwise
@@ -68,7 +70,7 @@ async function runOn(browser, baseUrl, caps = undefined) {
      */
     const log = (message) => console.log(`[${browser}]: ${message}`);
     
-    const context = { baseUrl, driver, log };
+    const context = { baseUrl, driver, log, actionsEnabled: caps?.actionsEnabled ?? true };
 
     log('=== started ===');
 
@@ -99,7 +101,7 @@ await (() => {
 
     return Promise.all(browsers.map((browser) => {
         if (browser === 'browser-stack') {
-            return Promise.all(BrowserStackCaps.map(cap => runOn(`browser-stack:${cap.name}`, baseUrl, cap)));
+            return Promise.all(BrowserStackCaps.map(cap => runOn(`browser-stack:${cap['bstack:options'].sessionName}`, baseUrl, cap)));
         } else {
             return runOn(browser, baseUrl);
         }

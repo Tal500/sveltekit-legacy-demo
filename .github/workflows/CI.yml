@@ -50,7 +50,7 @@ jobs:
         if: success() || failure() # Run even if previous failed
         run: npm run build
       
-      # Setup Nuget and install IE11&Edge web drivers
+      # Setup Nuget and install IE11&Edge web drivers and BrowserStackLocal
       - name: Setup NuGet.exe
         uses: nuget/setup-nuget@v1
       - name: Install IE11 Web Driver
@@ -63,22 +63,30 @@ jobs:
           $destination = "edge-driver.zip"
           Invoke-RestMethod -Uri https://msedgedriver.azureedge.net/$version/edgedriver_win64.zip -OutFile $destination
           Expand-Archive $destination -DestinationPath "edge-driver"
+      - name: Install BrowserStackLocal
+        run: |
+          $url = "https://www.browserstack.com/browserstack-local/BrowserStackLocal-win32.zip"
+          $destination = "edge-driver.zip"
+          Invoke-RestMethod -Uri $url -OutFile $destination
+          Expand-Archive $destination -DestinationPath "browser-stack-local"
       
       # Run Selenium Tests
       - name: Selenium Tests on BrowserStack, IE11 and Edge
         env:
-          BROWSER_STACK_SERVER: ${{ secrets.BROWSER_STACK_SERVER }}
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
-          $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
-          npm run preview &
+          $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver" + ";" + $pwd + "\browser-stack-local"
+          npm run preview -- --host &
           if ($null -eq $env:PERCY_TOKEN) {
             $TEST_SELENIUM_COMMAND = "npm run test-selenium"
           } else {
             $TEST_SELENIUM_COMMAND = "npx percy exec -- npm run test-selenium"
           }
           try {
-            if ($null -ne $env:BROWSER_STACK_SERVER) {
+            if ($null -ne $env:BROWSERSTACK_ACCESS_KEY) {
+              BrowserStackLocal.exe --key $BROWSERSTACK_ACCESS_KEY &
               $Env:BROWSER = "browser-stack"
               npm run test-selenium
             }

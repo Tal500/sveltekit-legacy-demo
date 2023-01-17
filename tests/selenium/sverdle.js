@@ -108,7 +108,7 @@ const cheatAndFindCorrectWord = async (driver) =>
     (await driver.executeScript('return document.getElementById("cheat-answer").content')).replaceAll('$', '');
 
 /** @type {import('./types').TestFunc} */
-export async function test({driver, baseUrl, log}) {
+export async function test({driver, baseUrl, log, actionsEnabled}) {
     await driver.get(baseUrl + '/sverdle');
     await driver.wait(until.titleIs('Sverdle'), 10000);
 
@@ -129,20 +129,22 @@ export async function test({driver, baseUrl, log}) {
 
     let currentRow = 0;
 
-    // an invalid word from the keyboard
-    await testSendWord(driver, rows[currentRow], 'abcde', true);
-    for (let i = 0; i < 5; ++i) { await pressKey(driver, Key.BACK_SPACE); }
+    if (actionsEnabled) {
+        // an invalid word from the keyboard
+        await testSendWord(driver, rows[currentRow], 'abcde', true);
+        for (let i = 0; i < 5; ++i) { await pressKey(driver, Key.BACK_SPACE); }
 
-    // an invalid word from the mouse
-    await testSendWord(driver, rows[currentRow], 'fghij', true);
-    for (let i = 0; i < 5; ++i) { await clickButton(driver, 'backspace'); }
+        // an invalid word from the mouse
+        await testSendWord(driver, rows[currentRow], 'fghij', true);
+        for (let i = 0; i < 5; ++i) { await clickButton(driver, 'backspace'); }
 
-    // valid words from the keyboard
-    await testSendWord(driver, rows[currentRow++], 'hello', true);
-    await waitServerResponse(driver);
+        // valid words from the keyboard
+        await testSendWord(driver, rows[currentRow++], 'hello', true);
+        await waitServerResponse(driver);
 
-    await testSendWord(driver, rows[currentRow++], 'world', true);
-    await waitServerResponse(driver);
+        await testSendWord(driver, rows[currentRow++], 'world', true);
+        await waitServerResponse(driver);
+    }
 
     // a valid word from the mouse
     await testSendWord(driver, rows[currentRow++], 'great', false);
