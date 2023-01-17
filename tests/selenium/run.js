@@ -10,6 +10,7 @@ import { test as sverdleTest } from './sverdle.js';
 
 const browserStackUsername = process.env.BROWSERSTACK_USERNAME;
 const browserStackAccessKey = process.env.BROWSERSTACK_ACCESS_KEY;
+const browserStackProjectName = process.env.BROWSERSTACK_PROJECT_NAME;
 
 const tests = [
     { name: 'Navigation', func: navigationTest },
@@ -30,7 +31,9 @@ const makeBuilder = (browser, caps) => {
 
         // Add the automated caps:
         caps['bstack:options'].local = true;
-        caps['bstack:options'].projectName = 'SvelteKit Legacy Demo';
+        if (browserStackProjectName) {
+            caps['bstack:options'].projectName = browserStackProjectName;
+        }
 
         return new Builder()
             .usingServer(`http://${browserStackUsername}:${browserStackAccessKey}@hub.browserstack.com/wd/hub`)

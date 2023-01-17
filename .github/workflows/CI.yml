@@ -69,12 +69,19 @@ jobs:
           $destination = "edge-driver.zip"
           Invoke-RestMethod -Uri $url -OutFile $destination
           Expand-Archive $destination -DestinationPath "browser-stack-local"
+        
+      - name: 'BrowserStack Env Setup'
+        uses: 'browserstack/github-actions/setup-env@master'
+        if: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        with:
+          username:  ${{ secrets.BROWSERSTACK_USERNAME }}
+          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          build-name: BUILD_INFO
+          project-name: SvelteKit Legacy Demo
       
       # Run Selenium Tests
       - name: Selenium Tests on BrowserStack, IE11 and Edge
         env:
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
           $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver" + ";" + $pwd + "\browser-stack-local"
