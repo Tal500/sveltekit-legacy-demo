@@ -84,17 +84,20 @@ jobs:
           } else {
             $TEST_SELENIUM_COMMAND = "npx percy exec -- npm run test-selenium"
           }
-          try {
-            if ($null -ne $env:BROWSERSTACK_ACCESS_KEY) {
-              BrowserStackLocal.exe --key $BROWSERSTACK_ACCESS_KEY &
-              $Env:BROWSER = "browser-stack"
-              npm run test-selenium
-            }
-            $Env:BROWSER = "ie"
+          $HAD_FAILED = $false
+          if ($null -ne $env:BROWSERSTACK_ACCESS_KEY) {
+            BrowserStackLocal.exe --key $BROWSERSTACK_ACCESS_KEY &
+            $Env:BROWSER = "browser-stack"
             npm run test-selenium
-            $Env:BROWSER = "edge"
-            Invoke-expression $TEST_SELENIUM_COMMAND
-          } catch {
-            echo "Error during browser tests!"
+            if(!$?) { $HAD_FAILED = true }
+          }
+          $Env:BROWSER = "ie"
+          npm run test-selenium
+          if(!$?) { $HAD_FAILED = true }
+          $Env:BROWSER = "edge"
+          Invoke-expression $TEST_SELENIUM_COMMAND
+          if(!$?) { $HAD_FAILED = true }
+          if($HAD_FAILED) {
+            throw "One or more selenium tests had failed!"
             exit 1
           }
