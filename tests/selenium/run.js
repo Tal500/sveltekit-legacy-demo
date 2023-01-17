@@ -86,6 +86,15 @@ async function runOn(browser, baseUrl, caps = undefined) {
     const log = (message) => console.log(`[${browser}]: ${message}`);
     
     const context = { baseUrl, driver, log, actionsEnabled: caps?.actionsEnabled ?? true };
+
+    const cleanDriver = async () => {
+        // Clean drive destruction consumes time for some reason, so don't perform this on CI,
+        //  unless on BrowserStack (because we don't want it to marked as "TIMED OUT").
+        if (!process.env.CI || caps) {
+            log('ending...');
+            await driver.quit();
+        }
+    }
     
     log('=== started ===');
 
@@ -116,15 +125,12 @@ async function runOn(browser, baseUrl, caps = undefined) {
             );
         }
 
+        await cleanDriver();
+
         throw err;// rethrow
     }
 
-    // Clean drive destruction consumes time for some reason, so don't perform this on CI,
-    //  unless on BrowserStack (because we don't want it to marked as "TIMED OUT").
-    if (!process.env.CI || caps) {
-        log('ending...');
-        await driver.quit();
-    }
+    await cleanDriver();
 
     log('=== finished ===');
 }
