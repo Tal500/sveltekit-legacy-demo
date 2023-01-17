@@ -1,5 +1,6 @@
 # SvelteKit Legacy Demo
 [![CI](https://github.com/Tal500/sveltekit-legacy-demo/actions/workflows/CI.yml/badge.svg)](https://github.com/Tal500/sveltekit-legacy-demo/actions/workflows/CI.yml)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=c01OSnhhOFFzV2pJSk9xWEU5OHBySkR1bnB5dFpMQ3VyWjFzem1DWDZ0VT0tLWpTdldrT1JwNkxMa2wwRDBVaDJYNHc9PQ==--52695c8ffd2e564444549394e327820ed6f4e3d6)](https://automate.browserstack.com/public-build/c01OSnhhOFFzV2pJSk9xWEU5OHBySkR1bnB5dFpMQ3VyWjFzem1DWDZ0VT0tLWpTdldrT1JwNkxMa2wwRDBVaDJYNHc9PQ==--52695c8ffd2e564444549394e327820ed6f4e3d6)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/732c6ff4/sveltekit-legacy-demo)
 
 This is a demo for the proposed legacy support of SvelteKit, introduced in PR sveltejs/kit#6265.
@@ -39,4 +40,5 @@ You can preview the production build with `npm run preview`.
 
 ## Test
 
-This project is tested with BrowserStack, and you can see some of the automation results in the [Percy page](https://percy.io/732c6ff4/sveltekit-legacy-demo).
+This project is tested with BrowserStack.
+You can see the build status on [the BrowserStack dashboard](https://automate.browserstack.com/public-build/c01OSnhhOFFzV2pJSk9xWEU5OHBySkR1bnB5dFpMQ3VyWjFzem1DWDZ0VT0tLWpTdldrT1JwNkxMa2wwRDBVaDJYNHc9PQ==--52695c8ffd2e564444549394e327820ed6f4e3d6), and you can see some of the automation results on the [Percy page](https://percy.io/732c6ff4/sveltekit-legacy-demo).
