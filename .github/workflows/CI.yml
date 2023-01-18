@@ -52,9 +52,14 @@ jobs:
         run: npm run build
       
       - name: Start Preview Server
-        run:
-          npm run preview -- --host &
-          Start-Sleep -Seconds 2
+        uses: JarvusInnovations/background-action@v1
+        with:
+          run: npm run preview -- --host
+          # your step-level and job-level environment variables are available to your commands as-is
+          # npm install will count towards the wait-for timeout
+          # whenever possible, move unrelated scripts to a different step
+          # to background multiple processes: add & to the end of the command
+          wait-on: http://localhost:4173
       
       # Setup Nuget and install IE11&Edge web drivers
       - name: Setup NuGet.exe
