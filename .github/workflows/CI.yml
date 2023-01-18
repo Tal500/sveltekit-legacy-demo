@@ -53,7 +53,7 @@ jobs:
       
       - name: Start Preview Server
         run:
-          cmd /c "START /b npm run preview -- --host"
+          START /b npm run preview -- --host
           Start-Sleep -Seconds 2
       
       # Setup Nuget and install IE11&Edge web drivers
