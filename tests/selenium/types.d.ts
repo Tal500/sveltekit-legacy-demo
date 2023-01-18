@@ -2,9 +2,17 @@ import type { WebDriver } from 'selenium-webdriver';
 
 import type { default as BrowserStackCapsList } from './browser-stack-caps.js';
 
-export type BrowserStackCaps = (typeof BrowserStackCapsList)[number] & {
-    'bstack:options'? : {
+export interface BrowserStackCaps {
+    browserName: string,
+    'bstack:options' : {
+        os: string;
+        osVersion: string;
+        browserVersion: string;
+        sessionName: string;
+        sendKeys: 'true' | 'false';
         local?: boolean;
+        networkLogs?: boolean;
+        consoleLogs?: 'disable' | 'errors' | 'warnings' | 'info' | 'verbose';
         projectName?: string;
         buildName?: string;
         localIdentifier?: string;

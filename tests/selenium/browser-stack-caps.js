@@ -1,3 +1,4 @@
+/** @type { import('./types.js').BrowserStackCaps[] } */
 export default [
     {
         browserName: "IE",
