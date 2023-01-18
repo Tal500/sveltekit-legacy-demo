@@ -1,8 +1,7 @@
-import { fail } from '@sveltejs/kit';
+import { fail, type Cookies } from '@sveltejs/kit';
 import { words, allowed } from './words.server';
 import type { PageServerLoad, Actions } from './$types';
 
-/** @type {import('./$types').PageServerLoad} */
 export const load: PageServerLoad = ({ cookies }) => {
 	const game = new Game(cookies.get('sverdle'));
 
@@ -50,7 +49,7 @@ export const actions: Actions = {
 			game.guesses[i] += key;
 		}
 
-		cookies.set('sverdle', game.toString());
+		game.setCookie(cookies);
 	},
 
 	/**
@@ -67,11 +66,11 @@ export const actions: Actions = {
 			return fail(400, { badGuess: true });
 		}
 
-		cookies.set('sverdle', game.toString());
+		game.setCookie(cookies);
 	},
 
 	restart: async ({ cookies }) => {
-		cookies.delete('sverdle');
+		Game.deleteCookie(cookies);
 	}
 };
 
@@ -148,5 +147,23 @@ class Game {
 	 */
 	toString() {
 		return `${this.index}-${this.guesses.join(' ')}-${this.answers.join(' ')}`;
+	}
+
+	/**
+	 * Set the client game cookie
+	 * @param cookies
+	 */
+	setCookie(cookies: Cookies) {
+		cookies.set('sverdle', this.toString(), {
+			secure: false// For the sake of simplicity with BrowserStack testing, we allow cookie on `http://`
+		});
+	}
+
+	/**
+	 * Delete the client game cookie
+	 * @param cookies
+	 */
+	static deleteCookie(cookies: Cookies) {
+		cookies.delete('sverdle');
 	}
 }
