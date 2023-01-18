@@ -1,3 +1,5 @@
+import './fast-selenium.cjs';
+
 import { Builder /*, logging*/ } from 'selenium-webdriver';
 import { Options as IEOptions } from 'selenium-webdriver/ie.js';
 
