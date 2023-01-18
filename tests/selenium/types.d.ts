@@ -9,7 +9,8 @@ export interface BrowserStackCaps {
         osVersion: string;
         browserVersion: string;
         sessionName: string;
-        sendKeys: 'true' | 'false';
+        idleTimeout?: number;
+        sendKeys?: 'true' | 'false';
         local?: boolean;
         networkLogs?: boolean;
         consoleLogs?: 'disable' | 'errors' | 'warnings' | 'info' | 'verbose';

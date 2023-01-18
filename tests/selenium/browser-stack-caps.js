@@ -20,7 +20,7 @@ export default [
             "osVersion": "Mojave",
             "browserVersion": "12.1",
             "sessionName" : "Safari 12.1",
-            "sendKeys" : "true"
+            idleTimeout: 250
         }
     },
     {
