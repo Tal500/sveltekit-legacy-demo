@@ -47,6 +47,7 @@ jobs:
       
       # Build Frontend
       - name: Build Frontend
+        id: build
         if: success() || failure() # Run even if previous failed
         run: npm run build
       
@@ -90,6 +91,7 @@ jobs:
       
       - name: Check for BrowserStack secret availability
         id: browser-stack-secret-check
+        if: steps.build.outputs.exit_code == 0 # It should run if and only if the build succeed
         # perform secret check & put boolean result as an output
         shell: bash
         env:
