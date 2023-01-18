@@ -4,9 +4,9 @@ export default [
         browserName: "IE",
         'bstack:options' : {
             "os": "Windows",
-            "osVersion": "7",
+            "osVersion": "10",
             "browserVersion": "11.0",
-            "sessionName" : "IE11 (Windows 7)",
+            "sessionName" : "IE11 (Windows 10)",
             "sendKeys" : "true"
         },
         // BrowserStack have issues with driver actions, so disable it.
@@ -23,6 +23,17 @@ export default [
             "sendKeys" : "true"
         }
     },
+    {
+        browserName: "Chrome",
+        'bstack:options' : {
+            "os": "Windows",
+            "osVersion": "XP",
+            "browserVersion": "14",
+            "sessionName" : "Chrome 14 (Windows XP)",
+            "sendKeys" : "true"
+        },
+        actionsEnabled: false
+    }
     // {
     // 'bstack:options' : {
     //     "os": "Windows",
