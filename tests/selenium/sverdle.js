@@ -17,7 +17,7 @@ const getInputValue = (driver, element) => driver.executeScript('return argument
  * @param {import('selenium-webdriver').WebDriver} driver 
  * @param {string} key
  */
-const pressKey = (driver, key) => driver.actions().keyDown(key).perform();
+const pressKey = (driver, key) => driver.actions().sendKeys(key).perform();
 
 // /**
 //  * 
