@@ -9,9 +9,9 @@ export default [
             "sessionName" : "IE11 (Windows 10)",
             "sendKeys" : "true"
         },
-        // BrowserStack have issues with driver actions, so disable it.
-        // Notice that IE11 is being tested locally, so we shouldn't be worry about that we can't use driver actions on BrowserStack.
-        actionsEnabled: false
+        extraCaps: {
+            actionsEnabled: false
+        }
     },
     {
         browserName: "Safari",
@@ -32,7 +32,9 @@ export default [
             "sessionName" : "Chrome 14 (Windows XP)",
             "sendKeys" : "true"
         },
-        actionsEnabled: false
+        extraCaps: {
+            actionsEnabled: false
+        }
     }
     // {
     // 'bstack:options' : {

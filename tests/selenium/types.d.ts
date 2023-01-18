@@ -2,6 +2,13 @@ import type { WebDriver } from 'selenium-webdriver';
 
 import type { default as BrowserStackCapsList } from './browser-stack-caps.js';
 
+export interface ExtraCaps {
+    // BrowserStack have issues with driver actions, so disable it.
+    // Notice that IE11&Chrome14 is being tested locally,
+    //  so we shouldn't be worry about that we can't use driver actions on BrowserStack.
+    actionsEnabled: boolean;
+}
+
 export interface BrowserStackCaps {
     browserName: string,
     'bstack:options' : {
@@ -18,14 +25,14 @@ export interface BrowserStackCaps {
         buildName?: string;
         localIdentifier?: string;
     },
-    actionsEnabled?: boolean;
+    extraCaps?: Partial<ExtraCaps>;
 };
 
 export interface Context {
     baseUrl: string;
     driver: WebDriver;
     log: (message: string) => void;
-    actionsEnabled: boolean;
+    extraCaps: ExtraCaps;
 };
 
 export type TestFunc = (context: Context) => Promise<void>;

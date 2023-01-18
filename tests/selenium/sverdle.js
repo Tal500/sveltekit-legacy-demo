@@ -108,13 +108,13 @@ const cheatAndFindCorrectWord = async (driver) =>
     (await driver.executeScript('return document.getElementById("cheat-answer").content')).replaceAll('$', '');
 
 /** @type {import('./types').TestFunc} */
-export async function test({driver, baseUrl, log, actionsEnabled}) {
+export async function test({driver, baseUrl, log, extraCaps}) {
     await driver.get(baseUrl + '/sverdle');
     await driver.wait(until.titleIs('Sverdle'), 10000);
 
     await waitForJS(driver);
 
-    percySnapshot(driver, 'Sverdle Initial');
+    await percySnapshot(driver, 'Sverdle Initial');
 
     const howToPlayElement = await driver.findElement(By.css('a[href="/sverdle/how-to-play"]'));
     assertStrictEquals(await howToPlayElement.getText(), "How to play");
@@ -129,7 +129,7 @@ export async function test({driver, baseUrl, log, actionsEnabled}) {
 
     let currentRow = 0;
 
-    if (actionsEnabled) {
+    if (extraCaps.actionsEnabled) {
         // an invalid word from the keyboard
         await testSendWord(driver, rows[currentRow], 'abcde', true);
         for (let i = 0; i < 5; ++i) { await pressKey(driver, Key.BACK_SPACE); }
@@ -159,7 +159,7 @@ export async function test({driver, baseUrl, log, actionsEnabled}) {
     // Check the winning message
     assert((await driver.findElement(By.css(`button[data-key="enter"].restart`)).getText()).indexOf('you won :)') >= 0);
 
-    percySnapshot(driver, 'Sverdle Final');
+    await percySnapshot(driver, 'Sverdle Final');
 
     ///////////
     ///////////

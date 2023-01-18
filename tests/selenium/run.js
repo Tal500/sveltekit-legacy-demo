@@ -88,8 +88,14 @@ async function runOn(browser, baseUrl, caps = undefined) {
      * @returns 
      */
     const log = (message) => console.log(`[${browser}]: ${message}`);
+
+    /** @type { import('./types.js').ExtraCaps } */
+    const extraCaps = {
+        actionsEnabled: true,
+        ...(caps?.extraCaps ?? {})
+    };
     
-    const context = { baseUrl, driver, log, actionsEnabled: caps?.actionsEnabled ?? true };
+    const context = { baseUrl, driver, log, extraCaps };
 
     const cleanDriver = async () => {
         // Clean drive destruction consumes time for some reason, so don't perform this on CI,
@@ -131,6 +137,8 @@ async function runOn(browser, baseUrl, caps = undefined) {
 
         await cleanDriver();
 
+        console.error(`Error happen in ${browser}: ${err}`)
+
         throw err;// rethrow
     }
 
@@ -139,18 +147,26 @@ async function runOn(browser, baseUrl, caps = undefined) {
     log('=== finished ===');
 }
 
-await (() => {
+await (async () => {
     const browsersArrStr = process.env.BROWSER || 'ie';
     const baseUrl = (process.argv.length >= 3) ? process.argv[2] : 'http://localhost:4173';
 
     const browsers = browsersArrStr.split(',').map(str => str.trim());
 
-    return Promise.all(browsers.map((browser) => {
+    const results = await Promise.allSettled(browsers.map((browser) => {
         if (browser === 'browser-stack') {
-            return Promise.all(BrowserStackCapsList.map(
+            return Promise.allSettled(BrowserStackCapsList.map(
                 cap => runOn(`browser-stack:${cap['bstack:options'].sessionName}`, baseUrl, cap)));
         } else {
             return runOn(browser, baseUrl);
         }
     }));
+
+    const firstError = /** @type { PromiseRejectedResult | undefined } */ (results
+        .map((result) => result.status === 'fulfilled' && Array.isArray(result.value) ? result.value : result)
+        .flat()
+        .find((result) => result.status === 'rejected'));
+    if (firstError) {
+        throw firstError.reason;
+    }
 })();
