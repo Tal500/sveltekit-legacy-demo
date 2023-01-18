@@ -25,7 +25,7 @@ export async function test({driver, baseUrl}) {
     let percyCount = 0;
     const postPress = async () => {
         await driver.wait(until.elementTextIs(counterDisplay, exectedCount.toString()));
-        await assertCount();
+        //await assertCount(); // No need to assert, since we already were waiting before
         await percySnapshot(driver, `Home Page (exectedCount: ${exectedCount}, percyCount: ${++percyCount})`);
     };
 
