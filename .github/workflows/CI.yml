@@ -51,16 +51,6 @@ jobs:
         if: success() || failure() # Run even if previous failed
         run: npm run build
       
-      - name: Start Preview Server
-        uses: JarvusInnovations/background-action@v1
-        with:
-          run: npm run preview -- --host
-          # your step-level and job-level environment variables are available to your commands as-is
-          # npm install will count towards the wait-for timeout
-          # whenever possible, move unrelated scripts to a different step
-          # to background multiple processes: add & to the end of the command
-          wait-on: http://localhost:4173
-      
       # Setup Nuget and install IE11&Edge web drivers
       - name: Setup NuGet.exe
         uses: nuget/setup-nuget@v1
@@ -78,6 +68,7 @@ jobs:
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
+          npm run preview -- --host &
           $Env:PATH += ";" + $pwd + "\edge-driver" + ";" + $pwd + "\Selenium.WebDriver.IEDriver.4.5.0\driver"
           if ($null -eq $env:PERCY_TOKEN) {
             $TEST_SELENIUM_COMMAND = "npm run test-selenium"
@@ -130,6 +121,7 @@ jobs:
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
+          npm run preview -- --host &
           $Env:BROWSER = "browser-stack"
           npm run test-selenium
 
