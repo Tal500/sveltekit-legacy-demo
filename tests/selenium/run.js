@@ -1,5 +1,7 @@
 import './fast-selenium.cjs';
 
+import { randomBytes } from 'node:crypto';
+
 import { Builder /*, logging*/ } from 'selenium-webdriver';
 import { Options as IEOptions } from 'selenium-webdriver/ie.js';
 
@@ -38,9 +40,7 @@ const makeBuilder = (browser, caps) => {
         if (browserStackProjectName) {
             caps['bstack:options'].projectName = browserStackProjectName;
         }
-        if (browserStackBuildName) {
-            caps['bstack:options'].buildName = browserStackBuildName;
-        }
+        caps['bstack:options'].buildName = browserStackBuildName;
         if (browserStackLocalIdentifier) {
             caps['bstack:options'].localIdentifier = browserStackLocalIdentifier;
         }
