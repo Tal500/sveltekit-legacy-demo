@@ -15,7 +15,7 @@
 		"@neoconfetti/svelte": "^1.0.0",
 		"@playwright/test": "^1.25.0",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "npm:@tal500/kit@1.1.1-legacy-builds-11",
+		"@sveltejs/kit": "npm:@tal500/kit@1.8.3-legacy-builds-12",
 		"@types/cookie": "^0.5.1",
 		"@vitejs/plugin-legacy": "^3.0.0",
 		"abortcontroller-polyfill": "^1.7.3",
